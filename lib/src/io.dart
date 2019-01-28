@@ -9,17 +9,16 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:async/async.dart';
-import 'package:path/path.dart' as path;
-import 'package:pool/pool.dart';
 import 'package:http/http.dart' show ByteStream;
 import 'package:http_multi_server/http_multi_server.dart';
+import 'package:path/path.dart' as path;
+import 'package:pool/pool.dart';
 import 'package:stack_trace/stack_trace.dart';
 
 import 'error_group.dart';
 import 'exceptions.dart';
 import 'exit_codes.dart' as exit_codes;
 import 'log.dart' as log;
-//import 'sdk.dart';
 import 'utils.dart';
 
 export 'package:http/http.dart' show ByteStream;
@@ -882,6 +881,7 @@ Future extractTarGz(Stream<List<int>> stream, String destination) async {
 /// This flag quiets warnings that come from opening OS X-generated tarballs on
 /// Linux, but only GNU tar >= 1.26 supports it.
 final bool _noUnknownKeyword = _computeNoUnknownKeyword();
+
 bool _computeNoUnknownKeyword() {
   if (!Platform.isLinux) return false;
   var result = Process.runSync("tar", ["--version"]);

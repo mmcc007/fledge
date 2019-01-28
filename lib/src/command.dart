@@ -5,10 +5,7 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
-//import 'entrypoint.dart';
-//import 'global_packages.dart';
 import 'log.dart' as log;
-//import 'system_cache.dart';
 
 /// The base class for commands for the pub executable.
 ///
@@ -16,22 +13,6 @@ import 'log.dart' as log;
 /// of subcommands. Only leaf commands are ever actually invoked. If a command
 /// has subcommands, then one of those must always be chosen.
 abstract class PubCommand extends Command {
-//  SystemCache get cache => _cache ??= SystemCache(isOffline: isOffline);
-//
-//  SystemCache _cache;
-//
-//  GlobalPackages get globals => _globals ??= GlobalPackages(cache);
-//
-//  GlobalPackages _globals;
-
-  /// Gets the [Entrypoint] package for the current working directory.
-  ///
-  /// This will load the pubspec and fail with an error if the current directory
-  /// is not a package.
-//  Entrypoint get entrypoint => _entrypoint ??= Entrypoint.current(cache);
-//
-//  Entrypoint _entrypoint;
-
   /// The URL for web documentation for this command.
   String get docUrl => null;
 

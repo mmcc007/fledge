@@ -1,7 +1,7 @@
 import 'package:fly/src/command.dart';
 import 'package:fly/src/exceptions.dart';
-import 'package:fly/src/io.dart';
 import 'package:fly/src/git.dart' as git;
+import 'package:fly/src/io.dart';
 
 /// Start a beta build.
 ///
@@ -21,11 +21,6 @@ class BetaCommand extends PubCommand {
 
   // [run] may also return a Future.
   void run() {
-    // [argResults] is set before [run()] is called and contains the options
-    // passed to this command.
-//    print(argResults['all']);
-//    print('Start a beta!');
-
     if (!entryExists('.git')) usageException('git repository must exist');
 
     final gitResult = git.runSync(['branch']);
@@ -33,7 +28,6 @@ class BetaCommand extends PubCommand {
       usageException('must be in dev branch and all files committed');
 
     // create git tag if none exists
-//    git.runSync(['tag']);
     PubProcessResult result = runProcessSync('git', ['tag']);
     if (result.success) {
       if (result.stdout.isEmpty) runProcessSync('git', ['tag', '0.0.0']);

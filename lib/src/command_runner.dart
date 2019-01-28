@@ -13,27 +13,11 @@ import 'package:fly/src/commands/release.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 
-//import 'command/build.dart';
-//import 'command/cache.dart';
-//import 'command/deps.dart';
-//import 'command/downgrade.dart';
-//import 'command/get.dart';
-//import 'command/global.dart';
-//import 'command/lish.dart';
-//import 'command/list_package_dirs.dart';
-//import 'command/run.dart';
-//import 'command/serve.dart';
-//import 'command/upgrade.dart';
-//import 'command/uploader.dart';
-//import 'command/version.dart';
 import 'exceptions.dart';
 import 'exit_codes.dart' as exit_codes;
 import 'git.dart' as git;
-//import 'http.dart';
 import 'io.dart';
 import 'log.dart' as log;
-//import 'sdk.dart';
-//import 'solver.dart';
 import 'utils.dart';
 
 class FlyCommandRunner extends CommandRunner {
@@ -78,7 +62,6 @@ class FlyCommandRunner extends CommandRunner {
           'warning',
           'normal',
           'io',
-//      'solver',
           'all'
         ],
         allowedHelp: {
@@ -86,7 +69,6 @@ class FlyCommandRunner extends CommandRunner {
           'warning': 'Show only errors and warnings.',
           'normal': 'Show errors, warnings, and user messages.',
           'io': 'Also show IO operations.',
-//      'solver': 'Show steps during version resolution.',
           'all': 'Show all output including internal tracing messages.'
         });
     argParser.addFlag('verbose',
@@ -106,7 +88,6 @@ class FlyCommandRunner extends CommandRunner {
         entryExists('lib') &&
         entryExists('pubspec.yaml'))) {
       log.message('not in a flutter project');
-//      usageException('not in a flutter project');
       printUsage();
       exit(exit_codes.USAGE);
     }
@@ -114,20 +95,6 @@ class FlyCommandRunner extends CommandRunner {
     addCommand(ConfigCommand());
     addCommand(BetaCommand());
     addCommand(ReleaseCommand());
-
-//    addCommand(BuildCommand());
-//    addCommand(CacheCommand());
-//    addCommand(DepsCommand());
-//    addCommand(DowngradeCommand());
-//    addCommand(GlobalCommand());
-//    addCommand(GetCommand());
-//    addCommand(ListPackageDirsCommand());
-//    addCommand(LishCommand());
-//    addCommand(RunCommand());
-//    addCommand(ServeCommand());
-//    addCommand(UpgradeCommand());
-//    addCommand(UploaderCommand());
-//    addCommand(VersionCommand());
   }
 
   Future run(Iterable<String> arguments) async {
@@ -252,23 +219,15 @@ and include the logs in an issue on https://github.com/mmcc007/fly/issues/new
   /// Returns the appropriate exit code for [exception], falling back on 1 if no
   /// appropriate exit code could be found.
   int _chooseExitCode(exception) {
-//    if (exception is SolveFailure) {
-//      var packageNotFound = exception.packageNotFound;
-//      if (packageNotFound != null) exception = packageNotFound;
-//    }
     while (exception is WrappedException && exception.innerError is Exception) {
       exception = exception.innerError;
     }
 
     if (exception is HttpException ||
-            exception is http.ClientException ||
-            exception is SocketException ||
-            exception is TlsException ||
-//        exception is PubHttpException ||
-            exception is git.GitException
-//    ||
-//        exception is PackageNotFoundException
-        ) {
+        exception is http.ClientException ||
+        exception is SocketException ||
+        exception is TlsException ||
+        exception is git.GitException) {
       return exit_codes.UNAVAILABLE;
     } else if (exception is FileSystemException || exception is FileException) {
       return exit_codes.NO_INPUT;

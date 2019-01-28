@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:fly/src/io.dart';
-import 'package:resource/resource.dart';
 import 'package:fly/src/log.dart' as log;
+import 'package:resource/resource.dart';
 
 /// Config a flutter app for CICD.
 ///
@@ -32,14 +32,6 @@ class ConfigCommand extends Command {
 
   // [run] may also return a Future.
   Future run() async {
-    // [argResults] is set before [run()] is called and contains the options
-    // passed to this command.
-//    print(argResults['all']);
-//    print('Config fly!');
-//
-//    PubProcessResult result = runProcessSync('ls', []);
-//    print(result.stdout);
-
     final resourcePath = 'resource';
 
     final buildServer = argResults['buildserver'];
@@ -49,7 +41,6 @@ class ConfigCommand extends Command {
       if (!alreadyRun(buildServer)) {
         // todo: do not overwrite any files
         await unpackTarGzFile('$resourcePath/fastlane/fastlane.tar.gz', '.');
-//      try {
         switch (buildServer) {
           case 'travis':
             await unpackTextFile(
@@ -64,9 +55,6 @@ class ConfigCommand extends Command {
           default:
             throw 'unknown build server $buildServer';
         }
-//      } on FormatException catch (error) {
-//        usageException(error.message);
-//      }
       } else {
         usageException('config already run');
       }

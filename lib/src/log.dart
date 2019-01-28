@@ -96,6 +96,7 @@ class Level {
   static const FINE = Level._("FINE");
 
   const Level._(this.name);
+
   final String name;
 
   String toString() => name;
@@ -177,6 +178,7 @@ class Verbosity {
   });
 
   const Verbosity._(this.name, this._loggers);
+
   final String name;
   final Map<Level, _LogFn> _loggers;
 

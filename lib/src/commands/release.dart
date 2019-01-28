@@ -12,17 +12,10 @@ class ReleaseCommand extends Command {
   final description =
       "Triggers the build server to release most recent beta build to users on both stores.";
 
-  ReleaseCommand() {
-    // [argParser] is automatically created by the parent class.
-//    argParser.addFlag('all', abbr: 'a');
-  }
+  ReleaseCommand() {}
 
   // [run] may also return a Future.
   void run() {
-    // [argResults] is set before [run()] is called and contains the options
-    // passed to this command.
-//    print(argResults['all']);
-//    print('Release to users!');
     PubProcessResult result = runProcessSync('fastlane', ['release']);
     for (final line in result.stdout) print(line);
     if (!result.success) {
