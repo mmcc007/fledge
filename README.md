@@ -1,4 +1,4 @@
-[![pub package](https://img.shields.io/pub/v/sky.svg)](https://pub.dartlang.org/packages/sky)
+[![pub package](https://img.shields.io/pub/v/fly.svg)](https://pub.dartlang.org/packages/fly)
 
 #  CICD for Flutter
 
@@ -158,6 +158,7 @@ is not currently documented in this README.
 
 ## Install `fly`
 `fly` is a command line utility for installing the CICD dependencies into your project.  
+
     pub global activate fly
     
 'fly' is also used to manage betas and releases.  
