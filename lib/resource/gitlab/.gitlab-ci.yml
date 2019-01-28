@@ -1,0 +1,88 @@
+# jobs within each stage can be run in parallel depending on number of runners
+stages:
+  # deploy betas from dev branch
+  - beta
+  # deploy releases from tagged master branch
+  - release
+
+###################
+# android jobs
+###################
+# only deploy beta on dev branch when new tag
+android_beta:
+  stage: beta
+  artifacts:
+    paths:
+      - android/fastlane/screenshots
+      - android/fastlane/logs
+  before_script:
+    - cd android
+    - openssl enc -aes-256-cbc -d -in key.properties.enc -out key.properties -k $KEY_PASSWORD
+    - openssl enc -aes-256-cbc -d -in key.jks.enc -out key.jks -k $KEY_PASSWORD
+    - cd ..
+  script:
+    - cd android
+    - fastlane beta
+  tags:
+    - android
+  only:
+    - tags
+  except:
+    - master
+
+# only deploy release when master branch changes
+android_release:
+  stage: release
+  artifacts:
+    paths:
+      - android/fastlane/screenshots
+      - android/fastlane/logs
+  before_script:
+    - cd android
+    - openssl enc -aes-256-cbc -d -in key.properties.enc -out key.properties -k $KEY_PASSWORD
+    - openssl enc -aes-256-cbc -d -in key.jks.enc -out key.jks -k $KEY_PASSWORD
+    - cd ..
+  script:
+    - cd android
+    - fastlane release
+  tags:
+    - android
+  only:
+    - master
+
+###################
+# ios jobs
+###################
+# only deploy beta on dev branch when new tag
+ios_beta:
+  stage: beta
+  artifacts:
+    paths:
+      - ios/fastlane/screenshots
+      - ios/fastlane/logs
+  before_script:
+  script:
+    - cd ios
+    - fastlane beta
+  tags:
+    - ios
+  only:
+    - tags
+  except:
+    - master
+
+# only deploy release when master branch changes
+ios_release:
+  stage: release
+  artifacts:
+    paths:
+      - ios/fastlane/screenshots
+      - ios/fastlane/logs
+  before_script:
+  script:
+    - cd ios
+    - fastlane release
+  tags:
+    - ios
+  only:
+    - master

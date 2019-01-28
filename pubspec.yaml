@@ -1,0 +1,18 @@
+name: fly
+description: A sample command-line application.
+version: 0.0.1
+homepage: https://www.github.com/mmcc007/fly
+author: Maurice McCabe <mmcc007@gmail.com>
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  resource: ^2.1.5
+#  package_info: ^0.4.0
+
+dev_dependencies:
+  test: ^1.0.0
+
+executables:
+  fly: main
