@@ -12,11 +12,11 @@ class ReleaseCommand extends Command {
   final description =
       "Triggers the build server to release most recent beta build to users on both stores.";
 
-  ReleaseCommand() {}
+  ReleaseCommand();
 
   // [run] may also return a Future.
   void run() {
-    PubProcessResult result = runProcessSync('fastlane', ['release']);
+    var result = runProcessSync('fastlane', ['release']);
     for (final line in result.stdout) print(line);
     if (!result.success) {
       for (final line in result.stderr) print(line);

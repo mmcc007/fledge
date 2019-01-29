@@ -1,5 +1,5 @@
 name: fledge
-description: A CICD solution for Flutter. Automates build, testing and signing on a number of supported build servers. Also automates upload to Google and Apple stores for release to beta testers and full release.
+description: CICD for Flutter. Automates build, testing and signing on a number of supported build servers. Automates upload to Google and Apple stores for beta testing and full release.
 version: 0.0.1
 homepage: https://www.github.com/mmcc007/fledge
 author: Maurice McCabe <mmcc007@gmail.com>
@@ -9,7 +9,26 @@ environment:
 
 dependencies:
   resource: ^2.1.5
-#  package_info: ^0.4.0
+#  analyzer: ^0.33.0
+  args: ^1.4.1
+  async: ^2.0.0
+#  collection: ^1.8.0
+  crypto: ">=1.0.0 <3.0.0"
+  http: ^0.12.0
+  http_multi_server: ">=1.0.0 <3.0.0"
+#  http_retry: ^0.1.1
+#  http_throttle: ^1.0.0
+  meta: ^1.1.0
+#  oauth2: ^1.0.0
+#  package_config: ^1.0.0
+#  package_resolver: ^1.0.0
+  path: ^1.2.0
+  pool: ^1.0.0
+  pub_semver: ^1.4.0
+#  shelf: ^0.7.0
+  source_span: ^1.4.0
+  stack_trace: ^1.0.0
+  yaml: ^2.0.0
 
 dev_dependencies:
   test: ^1.0.0

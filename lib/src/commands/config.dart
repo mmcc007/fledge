@@ -72,7 +72,7 @@ Future unpackTextFile(String resourcePath, String filePath) async {
   resourcePath = 'package:fledge/$resourcePath';
   log.io('unpacking $resourcePath to $filePath');
   var resource = Resource(resourcePath);
-  final String text = await resource.readAsString();
+  var text = await resource.readAsString();
   final file = await File(filePath).create();
   await file.writeAsString(text, flush: true);
 }
@@ -85,7 +85,7 @@ Future unpackTarGzFile(String resourcePath, String filePath) async {
 }
 
 bool alreadyRun(String buildServer) {
-  bool alreadyRun = entryExists('./fastlane') &&
+  var alreadyRun = entryExists('./fastlane') &&
       entryExists('./ios/fastlane') &&
       entryExists('./android/fastlane');
   switch (buildServer) {

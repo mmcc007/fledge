@@ -36,7 +36,7 @@ class BetaCommand extends PubCommand {
       usageException('all dev files must be pushed');
 
     // create git tag if none exists
-    PubProcessResult result = runProcessSync('git', ['tag']);
+    var result = runProcessSync('git', ['tag']);
     if (result.success) {
       if (result.stdout.isEmpty) runProcessSync('git', ['tag', '0.0.0']);
       result = runProcessSync('fastlane', ['start_beta']);
