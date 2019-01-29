@@ -101,7 +101,8 @@ If you want to do beta testing and releases on demand, it is well worth the effo
 ## Application setup
 
 Decide on an application ID for your app that is unique in both stores. For example, `com.mycompany.todo`. This will be used
-in several places to configure this CICD.
+in several places to configure this CICD. The application ID does not have to be the same for each
+store but it helps keep things simple.
 
 If you don't already have the latest (or near latest) version of the project set up, it is 
 recommended that you build a new project and overlay your new project with your existing
@@ -112,7 +113,8 @@ project code. For example:
     cp -r lib test test_driver pubspec.yaml <location of new project>/todo
 
 This is to avoid problems with auto-incrementing the version name for older projects, among
-other unforeseen problems.
+other possibly unforeseen problems (the underlying flutter build environment can change with new
+releases).
 
 To enable CICD-managed version control comment out the `version` in pubspec.yaml
 
@@ -171,14 +173,14 @@ This command will install fastlane scripts and the config file for Travis
 
 ## Fastlane setup
     
-2. Modify fastlane metadata to suit your needs.
+1. Modify fastlane metadata to suit your needs.
 
     This includes changing contact information for both android and ios, changing the name of 
     the app for android and ios (for example, using `MyUniqueAppName`), and many other things.
 
     The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metadata'.
 
-3. Update the `package_name` in `ios/fastlane/Appfile` and `android/fastlane/Appfile` to your 
+1. Update the `package_name` in `ios/fastlane/Appfile` and `android/fastlane/Appfile` to your 
 application ID. For example:
  
         package_name("com.mycompany.todo")

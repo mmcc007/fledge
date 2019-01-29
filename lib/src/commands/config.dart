@@ -36,6 +36,11 @@ class ConfigCommand extends Command {
 
     final buildServer = argResults['buildserver'];
 
+    // todo: create dev branch if none exists
+    // git branch dev
+    // git checkout dev
+    // git push --set-upstream origin dev
+
     if (buildServer != null) {
       // if config not complete run config
       if (!alreadyRun(buildServer)) {

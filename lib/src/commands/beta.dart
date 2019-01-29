@@ -25,7 +25,15 @@ class BetaCommand extends PubCommand {
 
     final gitResult = git.runSync(['branch']);
     if (!(gitResult.isNotEmpty && gitResult[0].contains('dev')))
-      usageException('must be in dev branch and all files committed');
+      usageException(
+          'must be in dev branch and all files committed and pushed');
+
+    // check if files committed and pushed
+    if (git.runSync(['status', '-s']).isNotEmpty)
+      usageException('all dev files must be committed and pushed');
+
+    if (git.runSync(['log', 'origin/dev..dev']).isNotEmpty)
+      usageException('all dev files must be pushed');
 
     // create git tag if none exists
     PubProcessResult result = runProcessSync('git', ['tag']);
