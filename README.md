@@ -1,4 +1,4 @@
-[![pub package](https://img.shields.io/pub/v/fly.svg)](https://pub.dartlang.org/packages/fly)
+[![pub package](https://img.shields.io/pub/v/fledge.svg)](https://pub.dartlang.org/packages/fledge)
 
 #  CICD for Flutter
 
@@ -48,7 +48,7 @@ Table of Contents
    * [Implementation](#implementation)
    * [Setup](#setup)
       * [Application setup](#application-setup)
-      * [Install fly](#install-fly)
+      * [Install fledge](#install-fledge)
       * [Install CICD dependencies](#install-cicd-dependencies)
       * [Fastlane setup](#fastlane-setup)
       * [Google Play Console setup](#google-play-console-setup)
@@ -158,16 +158,16 @@ On ios:
 Note: if not on a mac, these changes can be made directly in the ios config files. This process
 is not currently documented in this README.
 
-## Install `fly`
-`fly` is a command line utility for installing the CICD dependencies into your project.  
+## Install `fledge`
+`fledge` is a command line utility for installing the CICD dependencies into your project.  
 
-    pub global activate fly
+    pub global activate fledge
     
-'fly' is also used to manage betas and releases.  
-Some steps in this setup may be automated in `fly` to simplify the task of getting started with CICD.
+'fledge' is also used to manage betas and releases.  
+Some steps in this setup may be automated in `fledge` to simplify the task of getting started with CICD.
 
 ## Install CICD dependencies  
-    fly config -b travis
+    fledge config -b travis
 
 This command will install fastlane scripts and the config file for Travis
 
@@ -457,7 +457,7 @@ To start a beta:
 
 Make sure you are in the dev directory in root of repo (and all files are committed and uploaded to remote). Then enter:
 
-    fly beta
+    fledge beta
 
 
 This will increment the semver version name, generate a git tag, and push the committed code in the local `dev` to the remote `dev`. This push will trigger the build server to build the app 
@@ -477,7 +477,7 @@ The semver version name can be incremented using:
 
 To release to both stores, from root of local repo, in the `dev` branch, enter:
 
-    fly release
+    fledge release
 
 
 This will confirm that the local `dev` is committed locally and as a precaution it confirms that no

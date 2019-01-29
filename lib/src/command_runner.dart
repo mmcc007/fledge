@@ -20,7 +20,7 @@ import 'io.dart';
 import 'log.dart' as log;
 import 'utils.dart';
 
-class FlyCommandRunner extends CommandRunner {
+class FledgeCommandRunner extends CommandRunner {
   /// Returns the nested name of the command that's currently being run.
   /// Examples:
   ///
@@ -28,7 +28,7 @@ class FlyCommandRunner extends CommandRunner {
   ///     release
   ///
   /// Returns an empty string if no command is being run. (This is only
-  /// expected to happen when unit tests invoke code inside fly without going
+  /// expected to happen when unit tests invoke code inside fledge without going
   /// through a command.)
   static String get command {
     if (_options == null) return "";
@@ -46,11 +46,11 @@ class FlyCommandRunner extends CommandRunner {
   static ArgResults _options;
 
   String get usageFooter =>
-      "See https://www.github.org/mmcc007/fly for detailed documentation.";
+      "See https://www.github.org/mmcc007/fledge for detailed documentation.";
 
-  FlyCommandRunner({bool verboseHelp = false})
-      : super("fly", "fly is a CICD manager for Flutter.") {
-//    argParser.addFlag('version', negatable: false, help: 'Print fly version.');
+  FledgeCommandRunner({bool verboseHelp = false})
+      : super("fledge", "fledge is a CICD manager for Flutter.") {
+//    argParser.addFlag('version', negatable: false, help: 'Print fledge version.');
     argParser.addFlag('trace',
         hide: !verboseHelp,
         help: 'Print debugging information when an error occurs.');
@@ -172,9 +172,9 @@ class FlyCommandRunner extends CommandRunner {
         log.error("""
 This is an unexpected error. Please run
 
-    fly --trace ${options.arguments.map(protectArgument).join(' ')}
+    fledge --trace ${options.arguments.map(protectArgument).join(' ')}
 
-and include the logs in an issue on https://github.com/mmcc007/fly/issues/new
+and include the logs in an issue on https://github.com/mmcc007/fledge/issues/new
 """);
       }
 
@@ -251,7 +251,7 @@ and include the logs in an issue on https://github.com/mmcc007/fly/issues/new
 
     var result = await runProcess('ver', []);
     if (result.stdout.join('\n').contains('XP')) {
-      log.error('Sorry, but fly is not supported on Windows XP.');
+      log.error('Sorry, but fledge is not supported on Windows XP.');
       await flushThenExit(exit_codes.USAGE);
     }
   }
