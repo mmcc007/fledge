@@ -1,7 +1,7 @@
-name: fly
-description: A sample command-line application.
+name: fledge
+description: A CICD solution for Flutter. Automates build, testing and signing on a number of supported build servers. Also automates upload to Google and Apple stores for release to beta testers and full release.
 version: 0.0.1
-homepage: https://www.github.com/mmcc007/fly
+homepage: https://www.github.com/mmcc007/fledge
 author: Maurice McCabe <mmcc007@gmail.com>
 
 environment:
@@ -15,4 +15,4 @@ dev_dependencies:
   test: ^1.0.0
 
 executables:
-  fly: main
+  fledge: main

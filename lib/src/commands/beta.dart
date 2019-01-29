@@ -1,7 +1,7 @@
-import 'package:fly/src/command.dart';
-import 'package:fly/src/exceptions.dart';
-import 'package:fly/src/git.dart' as git;
-import 'package:fly/src/io.dart';
+import 'package:fledge/src/command.dart';
+import 'package:fledge/src/exceptions.dart';
+import 'package:fledge/src/git.dart' as git;
+import 'package:fledge/src/io.dart';
 
 /// Start a beta build.
 ///

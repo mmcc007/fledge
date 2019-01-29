@@ -1,6 +1,6 @@
 import 'package:args/command_runner.dart';
-import 'package:fly/src/exceptions.dart';
-import 'package:fly/src/io.dart';
+import 'package:fledge/src/exceptions.dart';
+import 'package:fledge/src/io.dart';
 
 /// Release a build.
 ///

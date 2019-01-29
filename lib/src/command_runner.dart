@@ -7,9 +7,9 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
-import 'package:fly/src/commands/beta.dart';
-import 'package:fly/src/commands/config.dart';
-import 'package:fly/src/commands/release.dart';
+import 'package:fledge/src/commands/beta.dart';
+import 'package:fledge/src/commands/config.dart';
+import 'package:fledge/src/commands/release.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 

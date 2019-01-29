@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:fly/src/io.dart';
-import 'package:fly/src/log.dart' as log;
+import 'package:fledge/src/io.dart';
+import 'package:fledge/src/log.dart' as log;
 import 'package:resource/resource.dart';
 
 /// Config a flutter app for CICD.
@@ -69,7 +69,7 @@ class ConfigCommand extends Command {
 }
 
 Future unpackTextFile(String resourcePath, String filePath) async {
-  resourcePath = 'package:fly/$resourcePath';
+  resourcePath = 'package:fledge/$resourcePath';
   log.io('unpacking $resourcePath to $filePath');
   var resource = Resource(resourcePath);
   final String text = await resource.readAsString();
@@ -78,7 +78,7 @@ Future unpackTextFile(String resourcePath, String filePath) async {
 }
 
 Future unpackTarGzFile(String resourcePath, String filePath) async {
-  resourcePath = 'package:fly/$resourcePath';
+  resourcePath = 'package:fledge/$resourcePath';
   log.io('unpacking $resourcePath to $filePath');
   var resource = Resource(resourcePath);
   await extractTarGz(resource.openRead(), filePath);
