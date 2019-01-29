@@ -1,11 +1,11 @@
 [![pub package](https://img.shields.io/pub/v/fledge.svg)](https://pub.dartlang.org/packages/fledge)
 
-Note: for demo of `fledge` see [todo](https://github.com/mmcc007/todo) which shows  
-`fledge` in use to deliver an app to both the Apple and Google stores. The app is live in both stores.
-
 # CICD for Flutter
 
 See [article](https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd) for introduction to `fledge`.
+
+Note: for demo of `fledge` see [todo](https://github.com/mmcc007/todo) which shows 
+`fledge` in use to deliver an app to both the Apple and Google stores. The app is live in both stores.
 
 CICD is 'Continous Interation and Continous Delivery'. It is the idea of allowing developers
 to focus on developing and reducing time spent on repetitive tasks, such as testing and 

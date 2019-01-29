@@ -1,0 +1,9 @@
+name: example
+description: example of running fledge
+version: 0.0.1
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+
+dependencies:
+  fledge: ^0.0.4
