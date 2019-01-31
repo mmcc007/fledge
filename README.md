@@ -1,18 +1,20 @@
 [![pub package](https://img.shields.io/pub/v/fledge.svg)](https://pub.dartlang.org/packages/fledge)
 
-# CICD for Flutter
+<img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Passarinho-azul-02.png" width="30%" title="Fledge" alt="Fledge">
 
 See [article](https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd) for introduction to `fledge`.
 
-Note: for demo of `fledge` see [todo](https://github.com/mmcc007/todo) which shows 
+For demo of `fledge` see [todo](https://github.com/mmcc007/todo) which shows 
 `fledge` in use to deliver an app to both the Apple and Google stores. The app is live in both stores.
+
+# CICD for Flutter
 
 CICD is 'Continous Interation and Continous Delivery'. It is the idea of allowing developers
 to focus on developing and reducing time spent on repetitive tasks, such as testing and 
 delivery, using automation. For more details see ([CICD](https://en.wikipedia.org/wiki/CI/CD)).
 
-This particular implementation of CICD is a slightly opinionated approach to CICD that 
-seems to work well with Flutter.
+This particular implementation of CICD is a slightly opinionated approach to CICD. It makes some simplifying assumptions
+that seems to work well with Flutter. Of course, these assumptions do not prohibit other methods of CICD.
 
 The idea of this implementation of CICD is to do all development in a `dev` branch and when 
 ready for beta, do a beta release
@@ -90,8 +92,6 @@ a build server and fastlane.
     1. To implement the `start_beta` and `release` command    
         This occurs on the local machine and triggers the corresponding processes on the build server.
         
-As an optional sanity test, before setting-up CICD for your own app, clone this repo and deploy it
-by following all the setup steps.
 
 # Setup
 
@@ -168,8 +168,9 @@ is not currently documented in this README.
 
     pub global activate fledge
     
-'fledge' is also used to manage betas and releases.  
-Some steps in this setup may be automated in `fledge` to simplify the task of getting started with CICD.
+`fledge` is also used to manage betas and releases.  
+
+In the future some steps in this setup may be automated in `fledge` to simplify the task of getting started with CICD.
 
 ## Install CICD dependencies  
     fledge config -b travis
