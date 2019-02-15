@@ -19,23 +19,24 @@ delivery, using automation. For more details see ([CICD](https://en.wikipedia.or
 This particular implementation of CICD is a slightly opinionated approach to CICD. It makes some simplifying assumptions
 that seems to work well with Flutter. Of course, these assumptions do not prohibit evolving other CICD workflows after starting with `fledge`.
 
-The idea behind `fledge` is to support a simple, fully automated, workflow to get consistent and reliable releases to both store.
-:
-1. Simple beta testing workflow  
+The idea behind `fledge` is to support a simple, fully automated, workflow to get consistent and reliable releases to both stores.
+
+`fledge` supports the following simple CICD workflows:
+1. Beta testing workflow  
 All development occurs in the `dev` branch and when
 ready for beta, do a beta release to your beta tester
 in both `Google Play Console` and `App Store Connect`.
 
     Each time a new beta is ready, a 'start beta' command is issued and a new beta is started
 and automatically released to testers.
-1. Simple release workflow  
+1. Release workflow  
 When beta testing is complete, a 'release' command is issued and the `dev` branch is automatically
 merged with the `master` branch and the release is uploaded to the `Apple Store` and the 
 Google `Play Store`.
 
 `fledge` provides the following features:
 1. Build artifact consistency  
-The build used to pass beta testing is the same build that is shipped to the stores. No rebuild
+The build artifact used to pass beta testing is the same build that is shipped to the stores. No rebuild
 required.
 1. Consistent build tracking  
     Using the version name (or the build number), the build can be traced back to the source used in the build.
@@ -43,7 +44,7 @@ required.
     The version name is the git tag, which tags the code used in the build. Alternatively the 
     build server records the commit ID used in the build next to the build number.
 1. User support  
-    The app name, version name, and build number can be displayed in an About section of the shipped
+    The app name, version name, and build number can be displayed in an 'About' section of the shipped
 app for support and bug fixing. These values will be the same on both android and ios.
 
      This allows tracing-back from any version of your app on any device, to the related build and source code. This can be used to resolve feature and bug issues.
@@ -113,19 +114,19 @@ The build server can be provided by Travis, Cirrus, an internal server running G
 The following one-time setup steps are required to enable the workflows provided by `fledge`.
 
 ## Application setup
-Let's setup your app for automation!
+
 ### App name and ID
 
-1. App Name  
+1. Pick an App Name  
 The app name, which is what the user sees, should be unique in both stores.
 Let's say your app name is `MyUniqueAppName`.
 
-1. App ID  
+1. Pick an App ID  
 Decide on an application ID for your app that is unique in both stores. For example, `com.mycompany.todo`. This will be used
 in several places to configure this CICD. The application ID does not have to be the same for each
 store but it helps keep things simple.
 
-1. Trace-back to source  
+1. Enable app version tracking   
 To enable the trace-back-to-source feature in `fledge` comment out the `version` in pubspec.yaml
     ```
     # version: 1.0.0+1
@@ -199,7 +200,7 @@ Upload will fail if required icons are missing from the Asset Catalog. To genera
         cp <location of downloaded icons>/ios/AppIcon.appiconset/* ios/Runner/Assets.xcassets/AppIcon.appiconset
 
 ## Install `fledge`
-`fledge` is a command line utility for installing the CICD dependencies into your project.  
+*Now that your app is setup, next, install `fledge`*:
 
     pub global activate fledge
     
@@ -213,6 +214,7 @@ In the future some steps in this setup may be automated in `fledge` to simplify 
 This command will install fastlane scripts and the config file for Travis
 
 ## Fastlane setup
+*Now that `fledge` has installed the Fastlane files, it is time to configure the Fastlane files with the specifics of your app.*
     
 1. Modify fastlane metadata to suit your needs.  
 This includes changing contact information for both android and ios, changing the name of 
@@ -227,6 +229,8 @@ application ID. For example:
 
 
 ## Google Play Console setup
+*Now that your app is fully configured, it is time to setup the app in the Google store console.*
+
 `App Store Connect` requires that the application be set-up before builds
 can be uploaded automatically.
 
@@ -350,6 +354,8 @@ Upload the first apk manually (this is required so `App Store Connect` knows the
 1. Discard the beta track using the `Discard` button
 
 ## Apple App Store Connect setup
+*Now that the fully configured app is setup in the Google store console, let's setup the app in the Apple store console.*
+
 The equivalent steps for the android store have to be taken for the iOS store.
 
 ### Sign ios app
@@ -415,6 +421,8 @@ Since flutter supports iPad, a related app icon is required of exactly '167x167'
     in .png format for iOS versions supporting iPad Pro (which is all flutter apps).
     
 ## Repo server setup
+*Now that the app is setup in both stores, let's setup the remote server.*
+
 Assuming you have an empty remote repo:
 1. Commit files on your local repo
 1. Create a `dev` branch on your local repo
@@ -437,6 +445,7 @@ For example, see https://help.github.com/articles/setting-the-default-branch and
 the local `dev` branch (`fledge` will guarantee this).
 
 ## Build server setup
+*Now that the app is setup in both store consoles and the code is setup in the remote server, it is time to setup the build server to be able to build from the source code and upload to both stores.*
 
 1. Account config  
 If your Apple ID under your Apple Developer Account has 2-factor authentication enabled, 
@@ -484,6 +493,7 @@ Add the following secret variables to your preferred build server (Travis, or Gi
     The password used while setting up match.
         
 # Usage
+*Now that the app, the store consoles, the remote repo and the build server have all been configured, your are ready to go for automation!*
 
 ## Starting a beta for both android and ios
 
@@ -495,7 +505,6 @@ To start a beta:
     ```
     $ fledge beta
     ```
-
     This will increment the semver version name, generate a git tag, and push the committed code in the local `dev` to the remote `dev`. This push will trigger the build server to build the app
 for ios and android and deploy each build to beta testers 
 automatically on both stores.
