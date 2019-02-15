@@ -19,36 +19,46 @@ delivery, using automation. For more details see ([CICD](https://en.wikipedia.or
 This particular implementation of CICD is a slightly opinionated approach to CICD. It makes some simplifying assumptions
 that seems to work well with Flutter. Of course, these assumptions do not prohibit evolving other CICD workflows after starting with `fledge`.
 
-The idea of this implementation of CICD is to do all development in a `dev` branch and when 
-ready for beta, do a beta release
-to both `Google Play Console` and `App Store Connect`. 
+The idea behind `fledge` is to support a simple, fully automated, workflow to get consistent and reliable releases to both store.
+:
+1. Simple beta testing workflow
+All development occurs in the `dev` branch and when
+ready for beta, do a beta release to your beta tester
+in both `Google Play Console` and `App Store Connect`.
 
-Each time a new beta is ready, a 'start beta' command is issued and a new beta is started 
+    Each time a new beta is ready, a 'start beta' command is issued and a new beta is started
 and automatically released to testers.
-
-Then when beta testing is complete, a 'release' command is issued and the `dev` branch is automatically 
+1. Simple release workflow
+    When beta testing is complete, a 'release' command is issued and the `dev` branch is automatically
 merged with the `master` branch and the release is uploaded to the `Apple Store` and the 
 Google `Play Store`.
 
-In this way it is guaranteed that:
- 1. The apps built for iOS and Android always have the same version name
-and build number. 
-1. The build used to pass beta testing is the same build that is shipped to the stores. No rebuild
+`fledge` provides the following features:
+1. Build artifact consistency
+The build used to pass beta testing is the same build that is shipped to the stores. No rebuild
 required.
-1. Using the version name (or the build number), the build can be traced back to the source used in the build.
+1. Consistent build tracking
+    Using the version name (or the build number), the build can be traced back to the source used in the build.
     
     The version name is the git tag, which tags the code used in the build. Alternatively the 
     build server records the commit ID used in the build next to the build number.
-1. The app name, version name, and build number can be displayed in an About section of the shipped
+1. User support
+    The app name, version name, and build number can be displayed in an About section of the shipped
 app for support and bug fixing. These values will be the same on both android and ios.
-1. As an additional bonus, a beta can be started and the apps released to both stores in as long
+
+     This allows tracing-back from any version of your app on any device, to the related build and source code. This can be used to resolve feature and bug issues.
+1. Fast and frequent releases
+As an additional bonus, a beta can be started and the apps released to both stores in as long
 as it takes the build server to run. This can be as fast as 15 minutes (not including Apple's 
 review time).
 
-A by-product of this is that, if your build server supports macs, a development mac is not 
+    This enables fast bug fixes.
+
+1. Flexible development environments
+A by-product of the `fledge` workflows is that development macs are not
 required (except perhaps for setting-up match and for [screenshots](https://pub.dartlang.org/packages/screenshots)). Development can be done 
-on Windows or Linux. The build server will take care of the ios-specific details of 
-building the ios app, starting the ios beta and release to `Apple Store`.
+on Windows or Linux machines. The build server will take care of the ios-specific details of
+building the ios app, starting the ios beta and release to the `Apple Store`.
  
 Table of Contents
 =================
@@ -81,30 +91,26 @@ Table of Contents
 The 'start beta' and 'release' commands mentioned above are implemented using a combination of a repository server, 
 a build server and fastlane. 
 
-1. Repository Server    
-    The repository server can run any git server, such as GitHub, GitLab, etc. The git tag, in 
+1. Repository Server
+The repository server can run any git server, such as GitHub, GitLab, etc. The git tag, in
      [semver](https://semver.org/) format, is used as the version name.
 1. Build Server
-    The build server can be provided by Travis, Cirrus, an internal server running GitLab, Jenkins, etc.. The build server
+The build server can be provided by Travis, Cirrus, an internal server running GitLab, Jenkins, etc.. The build server
     should provide a method to get the build number. The build number is used to ensure the release in
     both stores can be related back to the source code that was used to generate the app.
 1. Fastlane
-    Fastlane plays two roles: 
-    1. To build the ios and android apps and upload them to the respective stores.    
+    Fastlane plays two roles:
+    1. Building
+    Fastlane builds the ios and android apps and upload them to the respective stores.
         This occurs on the build server.
-    1. To implement the `start_beta` and `release` command    
-        This occurs on the local machine and triggers the corresponding processes on the build server.
+    1.  Command support
+    Fastlane supports the `start_beta` and `release` commands.
+    This occurs on the local machine and triggers the corresponding build processes on the build server.
         
 
 # Setup
 
-There are a lot of setup steps to take to get this working. But keep in mind that this only has
-to be done once. 
-
-Many of these steps have to be taken anyway to release an app. So I figured... may as well gather
-all these steps into one place and add some automation!
-
-If you want to do beta testing and releases on demand, it is well worth the effort!
+The following one-time setup steps are required to enable the workflows provided by `fledge`.
 
 ## Application setup
 Let's setup your app for automation!
