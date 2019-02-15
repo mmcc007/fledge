@@ -21,40 +21,40 @@ that seems to work well with Flutter. Of course, these assumptions do not prohib
 
 The idea behind `fledge` is to support a simple, fully automated, workflow to get consistent and reliable releases to both store.
 :
-1. Simple beta testing workflow
+1. Simple beta testing workflow  
 All development occurs in the `dev` branch and when
 ready for beta, do a beta release to your beta tester
 in both `Google Play Console` and `App Store Connect`.
 
     Each time a new beta is ready, a 'start beta' command is issued and a new beta is started
 and automatically released to testers.
-1. Simple release workflow
-    When beta testing is complete, a 'release' command is issued and the `dev` branch is automatically
+1. Simple release workflow  
+When beta testing is complete, a 'release' command is issued and the `dev` branch is automatically
 merged with the `master` branch and the release is uploaded to the `Apple Store` and the 
 Google `Play Store`.
 
 `fledge` provides the following features:
-1. Build artifact consistency
+1. Build artifact consistency  
 The build used to pass beta testing is the same build that is shipped to the stores. No rebuild
 required.
-1. Consistent build tracking
+1. Consistent build tracking  
     Using the version name (or the build number), the build can be traced back to the source used in the build.
     
     The version name is the git tag, which tags the code used in the build. Alternatively the 
     build server records the commit ID used in the build next to the build number.
-1. User support
+1. User support  
     The app name, version name, and build number can be displayed in an About section of the shipped
 app for support and bug fixing. These values will be the same on both android and ios.
 
      This allows tracing-back from any version of your app on any device, to the related build and source code. This can be used to resolve feature and bug issues.
-1. Fast and frequent releases
+1. Fast and frequent releases  
 As an additional bonus, a beta can be started and the apps released to both stores in as long
 as it takes the build server to run. This can be as fast as 15 minutes (not including Apple's 
 review time).
 
     This enables fast bug fixes.
 
-1. Flexible development environments
+1. Flexible development environments  
 A by-product of the `fledge` workflows is that development macs are not
 required (except perhaps for setting-up match and for [screenshots](https://pub.dartlang.org/packages/screenshots)). Development can be done 
 on Windows or Linux machines. The build server will take care of the ios-specific details of
@@ -91,19 +91,19 @@ Table of Contents
 The 'start beta' and 'release' commands mentioned above are implemented using a combination of a repository server, 
 a build server and fastlane. 
 
-1. Repository Server
+1. Repository Server  
 The repository server can run any git server, such as GitHub, GitLab, etc. The git tag, in
      [semver](https://semver.org/) format, is used as the version name.
-1. Build Server
+1. Build Server  
 The build server can be provided by Travis, Cirrus, an internal server running GitLab, Jenkins, etc.. The build server
     should provide a method to get the build number. The build number is used to ensure the release in
     both stores can be related back to the source code that was used to generate the app.
-1. Fastlane
+1. Fastlane  
     Fastlane plays two roles:
-    1. Building
+    1. Building  
     Fastlane builds the ios and android apps and upload them to the respective stores.
         This occurs on the build server.
-    1.  Command support
+    1.  Command support  
     Fastlane supports the `start_beta` and `release` commands.
     This occurs on the local machine and triggers the corresponding build processes on the build server.
         
@@ -125,14 +125,14 @@ Decide on an application ID for your app that is unique in both stores. For exam
 in several places to configure this CICD. The application ID does not have to be the same for each
 store but it helps keep things simple.
 
-1. Trace-back to source
+1. Trace-back to source  
 To enable the trace-back-to-source feature in `fledge` comment out the `version` in pubspec.yaml
     ```
     # version: 1.0.0+1
     ```
 
 ### Optional steps
-1. (Optional) Refresh your project
+1. (Optional) Refresh your project  
 If you don't already have the latest (or near latest) version of the project set up, it is 
 recommended that you build a new project and overlay your new project with your existing
 project code. For example:
@@ -145,7 +145,7 @@ project code. For example:
 other possibly unforeseen problems (the underlying flutter build environment can change with new
 releases).
 
-1. (Optional)
+1. (Optional) Install app icons  
 If you have already customized your icons:
     ```
     cd <my project>
@@ -155,21 +155,20 @@ If you have already customized your icons:
 Since Flutter runs on both iOS and android, there are some platform specific steps during application setup.
 
 #### On android:
-1. Update the application id in `android/app/build.gradle`:
+1. Update the application id in `android/app/build.gradle`:  
 
     ````
     applicationId "com.mycompany.todo"
     ````
     
     Note: `versionCode` and `versionName` can be ignored. These are updated automatically by the CICD.
-1. Update the app name in `android/app/src/main/AndroidManifest.xml`
+1. Update the app name in `android/app/src/main/AndroidManifest.xml`  
     ```
     android:label="<MyUniqueAppName>"
     ```
     This is the name that appears below the icon on the app.
-1. (Recommended)Icons
-
-    To generate a complete set
+1. (Recommended) Icons  
+To generate a complete set
     of icons from a single image, see https://makeappicon.com. This will generate a complete Asset
     Catalog. Overwrite the existing catalog using:
 
@@ -192,15 +191,12 @@ Since Flutter runs on both iOS and android, there are some platform specific ste
         match AppStore com.mycompany.todo
         
     Note: if match is not already set-up you will have to return to this step after match is set-up.
-1. (Recommended) Icons
-
-    Upload will fail if required icons are missing from the Asset Catalog. To generate a complete set
+1. (Recommended) Icons  
+Upload will fail if required icons are missing from the Asset Catalog. To generate a complete set
     of icons from a single image, see https://makeappicon.com. This will generate a complete Asset
     Catalog. Overwrite the existing catalog using:
 
         cp <location of downloaded icons>/ios/AppIcon.appiconset/* ios/Runner/Assets.xcassets/AppIcon.appiconset
-
-Note: if not on a mac, these changes can be made directly in the ios config files (not currently documented in this README).
 
 ## Install `fledge`
 `fledge` is a command line utility for installing the CICD dependencies into your project.  
@@ -218,9 +214,8 @@ This command will install fastlane scripts and the config file for Travis
 
 ## Fastlane setup
     
-1. Modify fastlane metadata to suit your needs.
-
-    This includes changing contact information for both android and ios, changing the name of 
+1. Modify fastlane metadata to suit your needs.  
+This includes changing contact information for both android and ios, changing the name of 
     the app for android and ios (for example, using `MyUniqueAppName`), and many other things.
 
     The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metadata'.
@@ -233,23 +228,21 @@ application ID. For example:
 
 ## Google Play Console setup
 `App Store Connect` requires that the application be set-up before builds
-can be uploaded automatically. Therefore, you should take the following steps:
+can be uploaded automatically.
 
 ### Create new app in store
     
 1. Go to `App Store Connect` (https://play.google.com/apps/publish)
 
-1. Click on `Create Application` and provide a title for your app.
-    
-    It is recommended to use the same name in both stores. For example, `MyUniqueAppName`.
+1. Click on `Create Application` and provide a title for your app.  
+It is recommended to use the same name in both stores. For example, `MyUniqueAppName`.
 
 1. Provide additional required information 'Short Description', 'Long Description', screenshots, etc...
-
-    For icon generation try https://makeappicon.com/, https://pub.dartlang.org/packages/flutter_launcher_icons
+    - For icon generation try https://makeappicon.com/, https://pub.dartlang.org/packages/flutter_launcher_icons
     
-    For auto screenshot generation see https://pub.dartlang.org/packages/screenshots
+    - For auto screenshot generation see https://pub.dartlang.org/packages/screenshots
     
-    For Feature Graphic generation see https://www.norio.be/android-feature-graphic-generator/
+    - For Feature Graphic generation see https://www.norio.be/android-feature-graphic-generator/
 
 1. When all necessary information is provided, click on `Save Draft`.
 1. Complete Content Rating
@@ -266,20 +259,20 @@ This CICD expects to find a password protected encrypted version of the private 
 password to unencrypt the private key is provided in the `KEY_PASSWORD` described below.
 
 To learn more about app signing see: https://developer.android.com/studio/publish/app-signing.
- 
-1. If you do not already have a keystore, generate a new keystore:
+
+Setting-up your app for android signing:  
+1. If you do not already have a keystore, generate a new keystore:  
 
         keytool -genkey -v -keystore android/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
         keytool -importkeystore -srckeystore android/key.jks -destkeystore android/key.jks -deststoretype pkcs12
     
-1. Create the `android/key.properties`:
+1. Create the `android/key.properties`:  
 
         storePassword=<store password>
         keyPassword=<key password>
         keyAlias=key
         storeFile=../key.jks
 
-Then encrypt them as follows:
 1. Add the following to your `.gitignore`:
 
         **/android/key.properties
@@ -371,7 +364,9 @@ For information on how to set-up a private repo for match see: https://docs.fast
 
 This CICD does not need the `Matchfile` created during match setup. However, it can be created
 temporarily to run the match setup.
-1. Initialize match.
+
+Setting-up your app for iOS signing:
+1. Initialize match.  
 It will ask for the location and write access to the remote private match repo.
     
     ````
@@ -381,9 +376,8 @@ It will ask for the location and write access to the remote private match repo.
     
     This creates a (temporary) file at ios/fastlane/Matchfile.
     
-1. Create your app in `App Store Connect`.
-
-    You will be asked for a unique name for the app for end users during this step. It is 
+1. Create your app in `App Store Connect`.  
+You will be asked for a unique name for the app for end users during this step. It is 
     recommended to use the same name in both stores. For example, `MyUniqueAppName`.
 
     ````
@@ -393,7 +387,6 @@ It will ask for the location and write access to the remote private match repo.
     See https://docs.fastlane.tools/actions/produce for details.
     
 1. Sync the match repo with the app store.
-
     ````
     fastlane match appstore
     ````
@@ -403,23 +396,22 @@ It will ask for the location and write access to the remote private match repo.
 
 ### Create required images
 
-1. Screenshots
+`App Store Connect` requires the following images:
 
-    Screenshots must be included in upload for iOS. Screenshots can be generated automatically (for
+1. Screenshots  
+Screenshots must be included in upload for iOS. Screenshots can be generated automatically (for
     both android and ios) using https://pub.dartlang.org/packages/screenshots. Alternatively
     they can be generated manually.
 
-1. App Store Icon
-
-    iOS Apps must include a 1024x1024px App Store Icon in PNG format.
+1. App Store Icon  
+iOS Apps must include a 1024x1024px App Store Icon in PNG format.
     
     See https://makeappicon.com/
 
     Store in `ios/fastlane/metadata/app_icon.png`
     
-1. App Store Icon for iPad
-
-    Since flutter supports iPad, a related app icon is required of exactly '167x167' pixels, 
+1. App Store Icon for iPad  
+Since flutter supports iPad, a related app icon is required of exactly '167x167' pixels, 
     in .png format for iOS versions supporting iPad Pro (which is all flutter apps).
     
 ## Repo server setup
@@ -433,7 +425,7 @@ Assuming you have an empty remote repo:
 
         git push --set-upstream origin dev
 
-1. (Recommended) Protect master branch
+1. (Recommended) Protect master branch  
 On the repo server, it is recommended to set the `master` branch to protected and `dev` as the default branch. This is to prevent accidental manual pushes to the `master` branch.
 
     After this point
@@ -446,7 +438,7 @@ the local `dev` branch (`fledge` will guarantee this).
 
 ## Build server setup
 
-1. Account config
+1. Account config  
 If your Apple ID under your Apple Developer Account has 2-factor authentication enabled, 
 you must create a new Apple ID without 2-factor authentication. This can be done using your
 existing Apple Developer account. See https://appstoreconnect.apple.com/access/users. It should
@@ -454,10 +446,10 @@ be set to have access to your app in `App Store Connect`. Log out and log back i
  new Apple ID, to complete
 the setup of your new Apple ID.
 
-1. (Optional) Connect to build server
+1. (Optional) Connect to build server  
 To complete the connection between Travis and GitHub, you may have to sync your account on Travis and enable the GitHub repo. See: https://travis-ci.org/account/repositories
 
-1. Secret variables
+1. Secret variables  
 Add the following secret variables to your preferred build server (Travis, or GitLab, etc... ):
 
     ```
@@ -469,37 +461,36 @@ Add the following secret variables to your preferred build server (Travis, or Gi
         MATCH_PASSWORD
     ```
     
-    * FASTLANE_USER
+    * FASTLANE_USER  
     This is your Apple ID (without 2-factor authentication). For example, user@email.com.
     
-    * FASTLANE_PASSWORD
+    * FASTLANE_PASSWORD  
     This is your Apple ID password. For travis, if there are special characters the
         password should be enclosed in single quotes.
         
-    * GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE
+    * GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE  
     This is required to login to `Google Play Console`. This is a private key. It should be
         surrounded with single quotes to be accepted by Travis. It can be generated on 
         https://console.developers.google.com. Note: this should never be included in your repo.
         
-    * KEY_PASSWORD
+    * KEY_PASSWORD  
     This is the password to the encrypted app private key stored in `android/key.jks.enc` and
         the related encrypted properties files stored in `android/key.properties.enc`
         
-    * PUBLISHING_MATCH_CERTIFICATE_REPO
+    * PUBLISHING_MATCH_CERTIFICATE_REPO  
     This is the location of the private match repo. For example, https://private.mycompany.com/private_repos/match
      
-    * MATCH_PASSWORD
+    * MATCH_PASSWORD  
     The password used while setting up match.
         
-    
 # Usage
 
 ## Starting a beta for both android and ios
 
 To start a beta:
 
-1. Commit local dev
-Make sure you are in the dev directory and all files are committed.
+1. Commit local dev  
+    Make sure you are in the dev directory and all files are committed.
 1. Then enter:
     ```
     $ fledge beta
