@@ -119,8 +119,11 @@ Decide on an application ID for your app that is unique in both stores. For exam
 in several places to configure this CICD. The application ID does not have to be the same for each
 store but it helps keep things simple.
 
-(See store
-setup instructions below for how to create the app with your app name and app ID in both stores for details.)
+1. Trace-back to source
+To enable the trace-back-to-source feature in `fledge` comment out the `version` in pubspec.yaml
+    ```
+    # version: 1.0.0+1
+    ```
 
 ### Optional steps
 1. (Optional) Refresh your project
@@ -136,11 +139,6 @@ project code. For example:
 other possibly unforeseen problems (the underlying flutter build environment can change with new
 releases).
 
-1. Trace-back to source
-To enable the trace-back-to-source feature in `fledge` comment out the `version` in pubspec.yaml
-    ```
-    # version: 1.0.0+1
-    ```
 1. (Optional)
 If you have already customized your icons:
     ```
@@ -148,7 +146,7 @@ If you have already customized your icons:
     tar cf - android/app/src/main/res ios/Runner/Assets.xcassets | ( cd <location of new project>; tar xf -)
     ```
 ### Platform specific steps
-Since Flutter runs on both iOS and android, there are some platform specific steps.
+Since Flutter runs on both iOS and android, there are some platform specific steps during application setup.
 
 #### On android:
 1. Update the application id in `android/app/build.gradle`:
@@ -163,7 +161,7 @@ Since Flutter runs on both iOS and android, there are some platform specific ste
     android:label="<MyUniqueAppName>"
     ```
     This is the name that appears below the icon on the app.
-1. Icons
+1. (Recommended)Icons
 
     To generate a complete set
     of icons from a single image, see https://makeappicon.com. This will generate a complete Asset
@@ -188,7 +186,7 @@ Since Flutter runs on both iOS and android, there are some platform specific ste
         match AppStore com.mycompany.todo
         
     Note: if match is not already set-up you will have to return to this step after match is set-up.
-1. Icons
+1. (Recommended) Icons
 
     Upload will fail if required icons are missing from the Asset Catalog. To generate a complete set
     of icons from a single image, see https://makeappicon.com. This will generate a complete Asset
@@ -367,10 +365,11 @@ For information on how to set-up a private repo for match see: https://docs.fast
 
 This CICD does not need the `Matchfile` created during match setup. However, it can be created
 temporarily to run the match setup.
-1. Initialize match. 
-    It will ask for the location and write access to the remote private match repo.
+1. Initialize match.
+It will ask for the location and write access to the remote private match repo.
     
     ````
+    cd ios
     fastlane match init
     ````
     
@@ -400,7 +399,7 @@ temporarily to run the match setup.
 
 1. Screenshots
 
-    Screenshots must be included in upload. Screenshots can be generated automatically (for
+    Screenshots must be included in upload for iOS. Screenshots can be generated automatically (for
     both android and ios) using https://pub.dartlang.org/packages/screenshots. Alternatively
     they can be generated manually.
 
@@ -428,18 +427,20 @@ Assuming you have an empty remote repo:
 
         git push --set-upstream origin dev
 
-1. On the repo server, it is recommended to set the `master` branch to protected and `dev` as the default branch. This is to prevent accidental manual pushes to the `master` branch.
+1. (Recommended) Protect master branch
+On the repo server, it is recommended to set the `master` branch to protected and `dev` as the default branch. This is to prevent accidental manual pushes to the `master` branch.
 
-After this point
+    After this point
 the remote `master` should be protected and should never be pushed-to manually. There should never
 be a reason to even checkout the local `master` branch locally. 
 For example, see https://help.github.com/articles/setting-the-default-branch and https://help.github.com/articles/configuring-protected-branches.
 
-All CICD commands should be issued from
-the local `dev` branch.
+    All CICD commands should only then be issued from
+the local `dev` branch (`fledge` will guarantee this).
 
 ## Build server setup
 
+1. Account config
 If your Apple ID under your Apple Developer Account has 2-factor authentication enabled, 
 you must create a new Apple ID without 2-factor authentication. This can be done using your
 existing Apple Developer account. See https://appstoreconnect.apple.com/access/users. It should
@@ -447,39 +448,42 @@ be set to have access to your app in `App Store Connect`. Log out and log back i
  new Apple ID, to complete
 the setup of your new Apple ID.
 
+1. (Optional) Connect to build server
 To complete the connection between Travis and GitHub, you may have to sync your account on Travis and enable the GitHub repo. See: https://travis-ci.org/account/repositories
 
+1. Secret variables
 Add the following secret variables to your preferred build server (Travis, or GitLab, etc... ):
 
-
-    FASTLANE_USER
-    FASTLANE_PASSWORD
-    GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE
-    KEY_PASSWORD
-    PUBLISHING_MATCH_CERTIFICATE_REPO
-    MATCH_PASSWORD
+    ```
+        FASTLANE_USER
+        FASTLANE_PASSWORD
+        GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE
+        KEY_PASSWORD
+        PUBLISHING_MATCH_CERTIFICATE_REPO
+        MATCH_PASSWORD
+    ```
     
-   * FASTLANE_USER
-        This is your Apple ID (without 2-factor authentication). For example, user@email.com.
+    * FASTLANE_USER
+    This is your Apple ID (without 2-factor authentication). For example, user@email.com.
     
-   * FASTLANE_PASSWORD
-        This is your Apple ID password. For travis, if there are special characters the 
+    * FASTLANE_PASSWORD
+    This is your Apple ID password. For travis, if there are special characters the
         password should be enclosed in single quotes.
         
-   * GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE
-        This is required to login to `Google Play Console`. This is a private key. It should be
+    * GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE
+    This is required to login to `Google Play Console`. This is a private key. It should be
         surrounded with single quotes to be accepted by Travis. It can be generated on 
         https://console.developers.google.com. Note: this should never be included in your repo.
         
-   * KEY_PASSWORD
-        This is the password to the encrypted app private key stored in `android/key.jks.enc` and
+    * KEY_PASSWORD
+    This is the password to the encrypted app private key stored in `android/key.jks.enc` and
         the related encrypted properties files stored in `android/key.properties.enc`
         
-   * PUBLISHING_MATCH_CERTIFICATE_REPO
-        This is the location of the private match repo. For example, https://private.mycompany.com/private_repos/match
+    * PUBLISHING_MATCH_CERTIFICATE_REPO
+    This is the location of the private match repo. For example, https://private.mycompany.com/private_repos/match
      
-   * MATCH_PASSWORD
-        The password used while setting up match.
+    * MATCH_PASSWORD
+    The password used while setting up match.
         
     
 # Usage
@@ -488,18 +492,21 @@ Add the following secret variables to your preferred build server (Travis, or Gi
 
 To start a beta:
 
-Make sure you are in the dev directory in root of repo (and all files are committed and uploaded to remote). Then enter:
+1. Commit local dev
+Make sure you are in the dev directory and all files are committed.
+1. Then enter:
+    ```
+    $ fledge beta
+    ```
 
-    fledge beta
-
-
-This will increment the semver version name, generate a git tag, and push the committed code in the local `dev` to the remote `dev`. This push will trigger the build server to build the app 
+    This will increment the semver version name, generate a git tag, and push the committed code in the local `dev` to the remote `dev`. This push will trigger the build server to build the app
 for ios and android and deploy each build to beta testers 
 automatically on both stores.
 
-When ready to start a new beta simply merge the code for the next beta to the local `dev` and
-re-issue the command.
+When ready to start a new beta simply commit the code for the next beta to the local `dev` and
+re-issue the `fledge beta` command.
 
+### Semver
 The semver version name can be incremented using:
 
     fastlane start_beta patch (the default)
@@ -508,28 +515,37 @@ The semver version name can be incremented using:
     
 ## Release to both stores
 
-To release to both stores, from root of local repo, in the `dev` branch, enter:
+When you are satisfied that the latest beta is complete it is time to make a release. At this point, your local dev branch has been synced to the remote dev branch and the build artifact is already in both stores. So making a release involves promoting the build in the beta track in both stores to a release.
 
-    fledge release
+1. Enter:
+    ```
+    $ fledge release
+    ```
 
-
-This will confirm that the local `dev` is committed locally and as a precaution it confirms that no
+    This will confirm that the local `dev` is committed locally and as a precaution it confirms that no
 push is required from the local `dev` to the remote `dev`. Then it will merge the remote `dev` to 
 the remote `master`. This will 
 trigger the build server to promote each build used in beta testing to a release in both stores. 
 The remote `master` now contains the most current code (the code used in the build that went thru
-beta testing). A rebuild of the beta-tested build is not required.
+beta testing).
 
-Note: currently auto-release is disabled in both stores. So the last step to release will have to
-be completed manually for each store.
+    A rebuild of the beta-tested build is not required because the build artifact is already present in both stores.
+
+Note: currently `fledge` auto-release is disabled in both stores. So the final step to release should be completed manually thru each store console.
 
 # The CI part of CICD
-Only the CD (Continous Delivery) part of CICD is currently addressed here. For an example of the
-CI (Continous Integration) part, including unit and integration testing in the cloud, 
-see https://github.com/brianegan/flutter_architecture_samples. Unit testing would be relatively
+Note: Only the CD (Continous Delivery) part of CICD is currently implemented. Unit testing would be relatively
 easy to add to this setup. Integration testing involves adding emulators and simulators which 
 requires more setup.
 
+For a live example of
+CI (Continous Integration) for Flutter, including unit and integration testing in the cloud,
+see https://github.com/brianegan/flutter_architecture_samples.
+
+Support for CI (Continuous Integration) will be added in an upcomming release of `fledge`.`
+
 # Issues and Pull Requests
-This is an initial release and more features can be added. [Issues](https://github.com/mmcc007/screenshots/issues) and [pull requests](https://github.com/mmcc007/screenshots/pulls) are welcome.
+This is an initial release and more features will be added in upcomming releases.
+
+[Issues](https://github.com/mmcc007/screenshots/issues) and [pull requests](https://github.com/mmcc007/screenshots/pulls) are welcome.
 
