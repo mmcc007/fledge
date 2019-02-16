@@ -568,7 +568,7 @@ You can download the app to your android or iOS device:
  ![ios screenshot](./art/ios_screenshot.png)
  
  You can then trace this back to the actual pipeline that produced the build artifacts for the app on both device types here:  
- ![fledge pipeline](./art/fledge_pipeline.png)
+ [![fledge pipeline](./art/fledge_pipeline.png)](https://travis-ci.org/mmcc007/todo/builds/493633473)
  
 # Issues and Pull Requests
 This is an initial release and more features will be added in upcomming releases.
