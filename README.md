@@ -126,6 +126,7 @@ Decide on an application ID for your app that is unique in both stores. For exam
 in several places to configure this CICD. The application ID does not have to be the same for each
 store but it helps keep things simple.
 
+### Version Tracking
 1. Enable app version tracking   
 To enable the trace-back-to-source feature in `fledge` comment out the `version` in pubspec.yaml
     ```
@@ -550,6 +551,25 @@ see https://github.com/brianegan/flutter_architecture_samples.
 
 Support for CI (Continuous Integration) will be added in an upcomming release of `fledge`.`
 
+# Demo App
+For a demo of `fledge` in action see: https://github.com/mmcc007/todo. 
+
+You can download the app to your android or iOS device:
+
+[![GitErDone](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.orbsoft.todo)
+[![GitErDone](https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2019-02-15&kind=iossoftware)](https://itunes.apple.com/us/app/giterdone/id1450240301)
+ 
+ and select the 'About' feature by tapping on the app title 'GitErDone'. 
+ 
+ On an android device you will see:  
+ ![android screenshot](./art/android_screenshot.png)
+ 
+ On an iOS device you will see:  
+ ![ios screenshot](./art/ios_screenshot.png)
+ 
+ You can then trace this back to the actual pipeline that produced the build artifacts for the app on both device types here:  
+ ![fledge pipeline](./art/fledge_pipeline.png)
+ 
 # Issues and Pull Requests
 This is an initial release and more features will be added in upcomming releases.
 
