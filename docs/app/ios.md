@@ -18,7 +18,6 @@ The App ID, App Name, icons and signing should be set in the iOS config files.
 
 ---
 
-## iOS Config
 Open Xcode
 ```
 open ios/Runner.xcworkspace

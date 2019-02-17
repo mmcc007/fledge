@@ -12,27 +12,28 @@ permalink: /
 Give your Flutter app a jumpstart with a responsive CI/CD tool that is easily customizable.
 {: .fs-6 .fw-300 }
 
+Automatically build, test, sign and release your Flutter app to both Apple and Google stores.
+
+Supports public and private build servers in the cloud (Travis, Cirrus, etc...) and in-house (Jenkins, GitLab, etc...).
+
+There are many steps involved each time an app, or an app upgrade, is delivered to both stores. Fledge exists to document and automate these steps.
+
 [Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/mmcc007/fledge){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
 ## Getting started
 
-### Dependencies
-
-Fledge is built for [Flutter](https://flutter.io/), which allows you to build beautiful native apps on iOS and Android from a single codebase. Fledge requires no special plugins and can run on public and private build servers in the cloud and in-house.
-
 ### Quick start: Use with GitHub and Travis
 
-1. Install Fledge to your local machine
+Install Fledge to your local machine
 ```
 $ pub global activate fledge
 ```
-<small>You must have Travis enabled for your GitHub repo. [See your travis repositories](https://travis-ci.org/account/repositories)</small>
 
 ### Travis: Add secrets
 
-1. Secret variables  
+Secret variables  
 <small>Set your secret variables in:</small>  
 ```
 https://travis-ci.org/<your name>/<your repo>/settings
@@ -57,7 +58,7 @@ git push --set-upstream origin dev
 
 ### Local repo: Start a beta
 
-1. Run pipeline on Travis
+Run pipeline on Travis
 ```
 $ fledge beta
 ```
@@ -65,7 +66,7 @@ $ fledge beta
 
 ### Local repo: Release
 
-1. Release to users
+Release to users
 ```
 $ fledge release
 ```
@@ -87,8 +88,9 @@ Fledge is distributed by an [MIT license](https://github.com/mmcc007/fledge/tree
 
 ### Contributing
 
-When contributing to this repository, please feel free to discuss the change you wish to make via issue,
-email, or any other method with the owners of this repository before making a change. Read more about becoming a contributor in [our GitHub repo](https://github.com/mmcc007/fledge#contributing).
+When contributing to this repository, please feel free to discuss via issue or pull request.
+
+Read more about becoming a contributor in [our GitHub repo](https://github.com/mmcc007/fledge#contributing).
 
 ### Code of Conduct
 

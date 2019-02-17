@@ -6,9 +6,8 @@ nav_order: 3
 
 # Usage
 {: .no_toc }
+*After the app, Fastlane, the store consoles, the remote repo and the build server have all been configured, you are ready to go for automation! Please follow the configuration details, available via the menu, before using Fledge.*
 
-
-Fledge has some simple usage options.
 {: .fs-6 .fw-300 }
 
 ## Table of contents
@@ -18,9 +17,6 @@ Fledge has some simple usage options.
 {:toc}
 
 ---
-
-# Usage
-*After the app, Fastlane, the store consoles, the remote repo and the build server have all been configured, your are ready to go for automation! Configuration details are available via the menu.*
 
 ## Starting a beta
  

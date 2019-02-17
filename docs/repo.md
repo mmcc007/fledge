@@ -6,6 +6,7 @@ nav_order: 7
 
 # Repo Configuration
 {: .no_toc }
+Fledge expects to be operating in the dev branch.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -15,9 +16,6 @@ nav_order: 7
 
 ---
 
-## Repo server setup
-
-Assuming you have an empty remote repo:
 ### Commit  
 Commit files on your local repo
 ### Create dev branch  

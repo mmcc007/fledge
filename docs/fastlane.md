@@ -15,6 +15,16 @@ nav_order: 5
 
 ---
 
+### Installing Fastlane
+Install fastlane using
+```
+# Using RubyGems
+sudo gem install fastlane -NV
+
+# Alternatively using Homebrew
+brew cask install fastlane
+```
+
 ### Metadata
 Metadata is the extra information about the app required by both stores. Fastlane maintains the metadata of the app and uploads it to both stores during a Fledge pipeline run.
 

@@ -18,7 +18,6 @@ The App ID, App Name, icons and signing should be set in the android config file
 
 ---
 
-## Android Config
 ### App ID
 Update the application id in `android/app/build.gradle`:  
 ````

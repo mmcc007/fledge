@@ -7,6 +7,7 @@ nav_order: 3
 
 # Apple Store
 {: .no_toc }
+`App Store Connect` requires the following images:
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -15,9 +16,6 @@ nav_order: 3
 {:toc}
 
 ---
-
-## App Store Connect
-`App Store Connect` requires the following images:
 
 ### Screenshots  
 Screenshots must be included in upload for iOS. Screenshots can be generated automatically (for
