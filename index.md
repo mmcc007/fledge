@@ -87,7 +87,7 @@ Fledge is distributed by an [MIT license](https://github.com/mmcc007/fledge/tree
 
 ### Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue,
+When contributing to this repository, please feel free to discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change. Read more about becoming a contributor in [our GitHub repo](https://github.com/mmcc007/fledge#contributing).
 
 ### Code of Conduct
