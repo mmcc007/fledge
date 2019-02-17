@@ -61,7 +61,7 @@ addEvent(toggleDarkMode, 'click', function(){
 })
 </script>
 
-See [Customization]({{ site.baseurl }}{% link docs/customization.md %}) for more information.
+See [Configuration]({{ site.baseurl }}{% link docs/configuration.md %}) for more information.
 
 ## Google Analytics
 

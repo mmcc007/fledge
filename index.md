@@ -2,7 +2,7 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Fledge is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "Fledge - CI/CD for flutter. Automatically build, test (including integration tests), sign and release your Flutter app to both Apple and Google stores. Supports tracing-back from any version of app to your source code."
 permalink: /
 ---
 

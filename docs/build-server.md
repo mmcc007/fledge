@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Build Server Configuration
-nav_order: 5
+nav_order: 7
 ---
 
 # Build Server Configuration

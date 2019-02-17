@@ -18,7 +18,7 @@ nav_order: 2
 
 ## Google Play Console
 
-The app must be setup in `Google Play Console` before builds can be uploaded automatically.
+All android apps must be setup in `Google Play Console` before builds can be uploaded automatically.
 
 ### Create new app in store
     

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Fastlane Configuration
-nav_order: 6
+nav_order: 4
 ---
 
 # Fastlane Configuration
