@@ -6,6 +6,8 @@ nav_order: 10
 
 # Design
 {: .no_toc }
+The 'start beta' and 'release' commands are implemented using a combination of a repository server, 
+a build server and Fastlane.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -14,10 +16,6 @@ nav_order: 10
 {:toc}
 
 ---
-
-## Intro
-The 'start beta' and 'release' commands are implemented using a combination of a repository server, 
-a build server and Fastlane. 
 
 ### Repository Server  
 The repository server can run any git server, such as GitHub, GitLab, etc. The git tag, in
