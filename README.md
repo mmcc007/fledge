@@ -30,7 +30,13 @@ You can download the demo app, which is live on the Google and Apple stores, to 
  You can then trace this back to the actual pipeline that produced the build artifacts for the app on both device types here (click on image for link to actual build):  
  [![fledge pipeline](./art/fledge_pipeline.png)](https://travis-ci.org/mmcc007/todo/builds/493633473)
  
-# Issues and Pull Requests
+# Contributing
+
+When contributing to this repository, please feel free to discuss the change you wish to make via issue,
+email, or any other method with the owners of this repository before making a change.
 
 [Issues](https://github.com/mmcc007/screenshots/issues) and [pull requests](https://github.com/mmcc007/screenshots/pulls) are welcome.
 
+# Code of Conduct
+
+Fledge is committed to fostering a welcoming community.
