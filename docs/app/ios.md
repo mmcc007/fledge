@@ -24,14 +24,14 @@ Open Xcode
 open ios/Runner.xcworkspace
 ```
 
-### App Name
-1. Update the `Display Name` to `MyUniqueAppName`.
-1. In `Runner>Runner>Info.plist`, set `Bundle display name` to `MyUniqueAppName`.
-
 ### App ID
 Update the `Bundle Identifier` to the same as the application id used on android, eg, `com.mycompany.todo`.
 
 Note: `Version` and `Build` can be ignored. These are updated automatically by the Fledge.
+
+### App Name
+1. Update the `Display Name` to `MyUniqueAppName`.
+1. In `Runner>Runner>Info.plist`, set `Bundle display name` to `MyUniqueAppName`.
 
 ### App Icons  
 To generate a complete set of icons from a single image, see [https://makeappicon.com](https://makeappicon.com). This will generate a complete Asset

@@ -71,9 +71,9 @@ $ fledge release
 ```
 <small>This will release the app to users.</small>
 
-### Configure Fledge
+### Fledge Usage
 
-- [See configuration options]({{ site.baseurl }}{% link docs/configuration.md %})
+- [See Usage options]({{ site.baseurl }}{% link docs/usage.md %})
 
 ---
 

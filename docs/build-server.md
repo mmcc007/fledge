@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Build Server Configuration
-nav_order: 7
+nav_order: 8
 ---
 
 # Build Server Configuration
@@ -66,7 +66,7 @@ To complete the connection between Travis and GitHub, you may have to sync your 
 1. Secret variables  
 Add secret variables in the in-house GitLab console for your app at:
 ```
-https://gitlab.mycompany.com/<your name>/<app repo>/settings
+https://gitlab.mycompany.com/<your name>/<app repo>/settings/ci_cd
 ```
 
 ![secret variables](../../assets/images/gitlab_inhouse_secret_env.png)  
