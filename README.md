@@ -49,14 +49,18 @@ For example, with GitHub and Travis:
 [View the documentation site](https://mmcc007.github.io/fledge/) for usage and configuration information.
 
 # Demo
-For a demo of Fledge in action see: https://github.com/mmcc007/todo. 
+For a demo of Fledge in action see: https://github.com/mmcc007/todo. Links are included to view the pipeline on Travis that delivers betas and releases to both stores.
 
-You can download the demo app, which is live on the Google and Apple stores, to your android or iOS device:
+The demo app was delivered to both Google and Apple stores using a Fledge pipeline.
 
+You can download the demo app to your android or iOS device:
 [![GitErDone](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.orbsoft.todo)
 [![GitErDone](https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2019-02-15&kind=iossoftware)](https://itunes.apple.com/us/app/giterdone/id1450240301)
  
- and select the 'About' feature by tapping on the app title 'GitErDone'. 
+### Fledge trace-back feature  
+This feature allows you to track what version of your app is running on any device. Useful for support and bug-fixing.
+ 
+ To use the Fledge trace-back feature, tap on the app title 'GitErDone' to view the 'About'. 
  
  On an android device you will see:  
  ![android screenshot](./art/android_screenshot.png)
@@ -64,7 +68,7 @@ You can download the demo app, which is live on the Google and Apple stores, to 
  On an iOS device you will see:  
  ![ios screenshot](./art/ios_screenshot.png)
  
- You can then trace this back to the actual pipeline that produced the build artifacts for the app on both device types here (click on image for link to actual build):  
+ You can then trace back to the actual pipeline that produced the build artifacts for the app on both device-types below (click on image for link to actual pipeline):  
  [![fledge pipeline](./art/fledge_pipeline.png)](https://travis-ci.org/mmcc007/todo/builds/493633473)
  
 # License
@@ -73,8 +77,7 @@ Fledge is distributed by an [MIT license](https://github.com/mmcc007/fledge/tree
 
 # Contributing
 
-When contributing to this repository, please feel free to discuss the change you wish to make via issue,
-email, or any other method with the owners of this repository before making a change.
+When contributing to this repository, please feel free to discuss via issue or pull request.
 
 [Issues](https://github.com/mmcc007/screenshots/issues) and [pull requests](https://github.com/mmcc007/screenshots/pulls) are welcome.
 
