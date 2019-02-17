@@ -2,13 +2,10 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Passarinho-azul-02.png" width="30%" title="Fledge" alt="Fledge">
 
-See [article](https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd) for introduction to Fledge.
+See https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd for introduction to Fledge.
 
-For demo of Fledge see [todo](https://github.com/mmcc007/todo) which shows 
+For demo of Fledge see https://github.com/mmcc007/todo which shows 
 Fledge in use to deliver an app to both the Apple and Google stores. The app is live in both stores.
-
-[![GitErDone](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.orbsoft.todo)
-[![GitErDone](https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2019-02-15&kind=iossoftware)](https://itunes.apple.com/us/app/giterdone/id1450240301)
 
 # Fledge: A CICD tool for Flutter
 
@@ -17,7 +14,7 @@ Fledge in use to deliver an app to both the Apple and Google stores. The app is 
 # Demo
 For a demo of Fledge in action see: https://github.com/mmcc007/todo. 
 
-You can download the app to your android or iOS device:
+You can download the demo app, which is live on the Google and Apple stores, to your android or iOS device:
 
 [![GitErDone](https://play.google.com/intl/en_us/badges/images/badge_new.png)](https://play.google.com/store/apps/details?id=com.orbsoft.todo)
 [![GitErDone](https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2019-02-15&kind=iossoftware)](https://itunes.apple.com/us/app/giterdone/id1450240301)
