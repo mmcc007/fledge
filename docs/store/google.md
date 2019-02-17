@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Google Store
-parent: Stores Configuration
+parent: Store Configuration
 nav_order: 2
 ---
 
