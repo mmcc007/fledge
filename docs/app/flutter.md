@@ -36,3 +36,26 @@ To enable build and release tracking comment-out the version in your pubspec.yam
 ```yaml
 # version: 1.0.0+1
 ```
+
+## Optional steps
+1. _Optional_: Refresh your project  
+If you don't already have the latest (or near latest) version of the project set up, it is 
+recommended that you build a new project and overlay your new project with your existing
+project code. For example:
+```
+$ flutter create --project-name todo --org com.mycompany todo
+$ cd <my project>
+$ cp -r lib test test_driver pubspec.yaml <location of new project>/todo
+```
+This is to avoid problems with auto-incrementing the version name for older projects, among
+other possibly unforeseen problems (the underlying flutter build environment can change with new
+releases).
+
+1. _Optional_: Install app icons  
+If you have already customized your icons:
+```
+$ cd <my project>
+$ tar cf - android/app/src/main/res ios/Runner/Assets.xcassets | ( cd <location of new project>; tar xf -)
+```
+
+---
