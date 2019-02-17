@@ -94,4 +94,3 @@ email, or any other method with the owners of this repository before making a ch
 
 Fledge is committed to fostering a welcoming community.
 
-[View our Code of Conduct](https://github.com/mmcc007/fledge/tree/master/CODE_OF_CONDUCT.md) on our GitHub repository.
