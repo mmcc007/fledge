@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Customization
+title: Fastlane Configuration
 nav_order: 6
 ---
 
-# Customization
+# Fastlane Configuration
 {: .no_toc }
 
 ## Table of contents
@@ -15,59 +15,30 @@ nav_order: 6
 
 ---
 
-## Color schemes
-{: .d-inline-block }
+### Metadata
+Metadata is the extra information about the app required by both stores. Fastlane maintains the metadata of the app and uploads it to both stores during a Fledge pipeline run.
 
-New
-{: .label .label-green }
+Modify the Fastlane metadata to suit your needs.  
+This includes changing contact information required by both Google and Apple, changing the name of 
+    the app for android and ios (for example, using `MyUniqueAppName`), and other metadata.
 
-Just the Docs supports two color schemes: light (default), and dark.
+The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metadata'.
 
-To enable a color scheme, set the `color_scheme` parameter in your site's `_config.yml` file:
-
-#### Example
-{: .no_toc }
-
-```yaml
-# Color scheme currently only supports "dark" or nil (default)
-color_scheme: "dark"
+### App ID
+Update the `package_name` in `ios/fastlane/Appfile` and `android/fastlane/Appfile` to your 
+application ID. For example:
 ```
-<button class="btn js-toggle-dark-mode">Preview dark color scheme</button>
-
-<script>
-const toggleDarkMode = document.querySelector('.js-toggle-dark-mode')
-const cssFile = document.querySelector('[rel="stylesheet"]')
-const originalCssRef = cssFile.getAttribute('href')
-const darkModeCssRef = originalCssRef.replace('just-the-docs.css', 'dark-mode-preview.css')
-
-addEvent(toggleDarkMode, 'click', function(){
-  if (cssFile.getAttribute('href') === originalCssRef) {
-    cssFile.setAttribute('href', darkModeCssRef)
-  } else {
-    cssFile.setAttribute('href', originalCssRef)
-  }
-})
-</script>
-
-## Specific visual customization
-
-To customize your site’s aesthetic, open `_sass/custom/custom.scss` in your editor to see if there is a variable that you can override. Most styles like fonts, colors, spacing, etc. are derived from these variables. To override a specific variable, uncomment its line and change its value.
-
-For example, to change the link color from the purple default to blue, open `_sass/custom/custom.css` and find the `$link-color` variable on line `50`. Uncomment it, and change its value to our `$blue-000` variable, or another shade of your choosing.
-
-#### Example
-{: .no_toc }
-
-```scss
-// ...
-//
-// $body-text-color: $grey-dk-100;
-// $body-heading-color: $grey-dk-300;
-$link-color: $blue-000;
-//
-// ...
+package_name("com.mycompany.todo")
 ```
 
-_Note:_ Editing the variables directly in `_sass/support/variables.scss` is not recommended and can cause other dependencies to fail.
+## Apple Account Config  
+
+If your Apple ID under your Apple Developer Account has 2-factor authentication enabled, Fastlane will require a new Apple ID without 2-factor authentication. 
+
+A new Apple ID can be created using your existing Apple Developer account. See [https://appstoreconnect.apple.com/access/users](https://appstoreconnect.apple.com/access/users). It should be set to have access to your app in `App Store Connect`. 
+
+To complete the setup of your new Apple ID, log out and log back in, using your new Apple ID.
+
+The Apple ID's username and password are used by the build server secret variables `FASTLANE_USER` and `FASTLANE_PASSWORD`.
 
 ---

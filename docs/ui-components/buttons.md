@@ -1,12 +1,14 @@
 ---
 layout: default
-title: Buttons
-parent: UI Components
+title: Android
+parent: App Configuration
 nav_order: 2
 ---
 
-# Buttons
+# Android
 {: .no_toc }
+
+The App ID, App Name, icons and signing should be set in the android config files.
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -16,82 +18,112 @@ nav_order: 2
 
 ---
 
-## Basic button styles
+## Android Config
+### App ID
+Update the application id in `android/app/build.gradle`:  
+````
+applicationId "com.mycompany.todo"
+````
+    
+Note: `versionCode` and `versionName` can be ignored. These are updated automatically by Fledge.
 
-### Links that look like buttons
+### App Name
+Update the app name in `android/app/src/main/AndroidManifest.xml`  
+```
+android:label="<MyUniqueAppName>"
+```
+This is the name that appears below the icon on the app.
 
-<div class="code-example" markdown="1">
-[Link button](http://example.com/){: .btn }
-
-[Link button](http://example.com/){: .btn .btn-purple }
-[Link button](http://example.com/){: .btn .btn-blue }
-[Link button](http://example.com/){: .btn .btn-green }
-
-[Link button](http://example.com/){: .btn .btn-outline }
-</div>
-```markdown
-[Link button](http://example.com/){: .btn }
-
-[Link button](http://example.com/){: .btn .btn-purple }
-[Link button](http://example.com/){: .btn .btn-blue }
-[Link button](http://example.com/){: .btn .btn-green }
-
-[Link button](http://example.com/){: .btn .btn-outline }
+### App Icons
+The set of icons, required for an Android app, can be generated in a number of different ways.
+For one way to generate a complete set of icons from a single image, see [https://makeappicon.com](https://makeappicon.com). This will generate an set if icons for Android. Overwrite the existing catalog using:
+```
+cp -r <location of downloaded icons>/android/mipmap* android/app/src/main/res/
 ```
 
-### Button element
+### App Signing
 
-GitHub Flavored Markdown does not support the `button` element, so you'll have to use inline HTML for this:
+An android app requires signing using a private key that you generate yourself.
+It is important that you manage this private key carefully. For example, never check it into your repo.
 
-<div class="code-example">
-<button type="button" name="button" class="btn">Button element</button>
-</div>
-```html
-<button type="button" name="button" class="btn">Button element</button>
-```
+To learn more about app signing see: [https://developer.android.com/studio/publish/app-signing](https://developer.android.com/studio/publish/app-signing).
+
+Setting-up your app for android signing:  
+1. If you do not already have a keystore, generate a new keystore:  
+
+        keytool -genkey -v -keystore android/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
+        keytool -importkeystore -srckeystore android/key.jks -destkeystore android/key.jks -deststoretype pkcs12
+    
+1. Create the `android/key.properties`:  
+
+        storePassword=<store password>
+        keyPassword=<key password>
+        keyAlias=key
+        storeFile=../key.jks
+
+1. Add the following to your `.gitignore`:
+
+        **/android/key.properties
+        **/android/key.jks
+    
+1. Encrypt both files with:
+    
+        KEY_PASSWORD=<my secret key password>
+        openssl enc -aes-256-cbc -salt -in android/key.jks -out android/key.jks.enc -k $KEY_PASSWORD
+        openssl enc -aes-256-cbc -salt -in android/key.properties -out android/key.properties.enc -k $KEY_PASSWORD
+    
+    Remember value of `KEY_PASSWORD` for use in build server setup.
+
+1. Enable android release builds in `android/app/build.gradle`:
+    
+    Replace:
+    ````
+    apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+    
+    android {
+    ````
+    with
+    ````
+    apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+    
+    def keystoreProperties = new Properties()
+    def keystorePropertiesFile = rootProject.file('key.properties')
+    if (keystorePropertiesFile.exists()) {
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    }
+    
+    android {
+    ````
+    
+    and replace:
+    ````
+        buildTypes {
+            release {
+                // TODO: Add your own signing config for the release build.
+                // Signing with the debug keys for now, so `flutter run --release` works.
+                signingConfig signingConfigs.debug
+            }
+            profile {
+                matchingFallbacks = ['debug', 'release']
+            }
+        }
+    ````
+    with:
+    ````
+        signingConfigs {
+            release {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+        buildTypes {
+            release {
+                signingConfig signingConfigs.release
+            }
+        }
+    ````
+1. Push key.jks.enc and key.properties.enc and android/app/build.gradle to the remote repo.
 
 ---
-
-## Using utilities with buttons
-
-### Button size
-
-Wrap the button in a container that uses the [font-size utility classes]({{ site.baseurl }}{% link docs/utilities/typography.md %}) to scale buttons:
-
-<div class="code-example" markdown="1">
-<span class="fs-6">
-[Big ass button](http://example.com/){: .btn }
-</span>
-
-<span class="fs-3">
-[Tiny ass button](http://example.com/){: .btn }
-</span>
-</div>
-```markdown
-<span class="fs-8">
-[Link button](http://example.com/){: .btn }
-</span>
-
-<span class="fs-3">
-[Tiny ass button](http://example.com/){: .btn }
-</span>
-```
-
-### Spacing between buttons
-
-Use the [margin utility classes]({{ site.baseurl }}{% link docs/utilities/layout.md %}#spacing) to add spacing between two buttons in the same block.
-
-<div class="code-example" markdown="1">
-[Button with space](http://example.com/){: .btn .btn-purple .mr-2 }
-[Button ](http://example.com/){: .btn .btn-blue .mr-2 }
-
-[Button with more space](http://example.com/){: .btn .btn-green .mr-4 }
-[Button ](http://example.com/){: .btn .btn-blue }
-</div>
-```markdown
-[Button with space](http://example.com/){: .btn .btn-purple .mr-2 }
-[Button ](http://example.com/){: .btn .btn-blue }
-
-[Button with more space](http://example.com/){: .btn .btn-green .mr-4 }
-[Button ](http://example.com/){: .btn .btn-blue }
-```

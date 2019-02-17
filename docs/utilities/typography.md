@@ -1,11 +1,11 @@
 ---
 layout: default
 title: Typography
-parent: Utilities
+parent: Stores Configuration
 nav_order: 4
 ---
 
-# Typography Utilities
+# Typography Stores Configuration
 {: .no_toc }
 
 ## Table of contents

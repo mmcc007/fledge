@@ -1,12 +1,12 @@
 ---
 layout: default
-title: UI Components
+title: App Configuration
 nav_order: 3
 has_children: true
 permalink: /docs/ui-components
 ---
 
-# UI Components
+# App Configuration
 
-To make it as easy as possible to write documentation in plain Markdown, most UI components are styled using default Markdown elements with few additional CSS classes needed.
+The following are some guidelines to standardize how Flutter apps should be configured for release.
 {: .fs-6 .fw-300 }

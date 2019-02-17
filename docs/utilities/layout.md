@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Layout
-parent: Utilities
+title: Google Store
+parent: Stores Configuration
 nav_order: 2
 ---
 
-# Layout Utilities
+# Google Store Configuration
 {: .no_toc }
 
 ## Table of contents
@@ -16,97 +16,34 @@ nav_order: 2
 
 ---
 
-## Spacing
+## Google Play Console
 
-These spacers are available to use for margins and padding with responsive utility classes. Combine these prefixes with a screen size and spacing scale to use them responsively.
+The app must be setup in `Google Play Console` before builds can be uploaded automatically.
 
-| Classname prefix | What it does                  |
-|:-----------------|:------------------------------|
-| `.m-`            | `margin`                      |
-| `.mx-`           | `margin-left`, `margin-right` |
-| `.my-`           | `margin top`, `margin bottom` |
-| `.mt-`           | `margin-top`                  |
-| `.mr-`           | `margin-right`                |
-| `.mb-`           | `margin-bottom`               |
-| `.ml-`           | `margin-left`                 |
+### Create new app in store
+    
+1. Go to `Google Play Console` ([https://play.google.com/apps/publish](https://play.google.com/apps/publish))
 
-| Classname prefix | What it does                    |
-|:-----------------|:--------------------------------|
-| `.p-`            | `padding`                       |
-| `.px-`           | `padding-left`, `padding-right` |
-| `.py-`           | `padding top`, `padding bottom` |
-| `.pt-`           | `padding-top`                   |
-| `.pr-`           | `padding-right`                 |
-| `.pb-`           | `padding-bottom`                |
-| `.pl-`           | `padding-left`                  |
+1. Click on `Create Application` and provide a title for your app.  
+It is recommended to use the same name in both stores. For example, `MyUniqueAppName`.
 
-Spacing values are based on a `1rem = 16px` spacing scale, broken down into these units:
+1. Provide additional required information 'Short Description', 'Long Description', screenshots, etc...
+    - For icon generation see [https://makeappicon.com/](https://makeappicon.com/), [https://pub.dartlang.org/packages/flutter_launcher_icons](https://pub.dartlang.org/packages/flutter_launcher_icons)
+    
+    - For auto screenshot generation see [https://pub.dartlang.org/packages/screenshots](https://pub.dartlang.org/packages/screenshots)
+    
+    - For Feature Graphic generation see [https://www.norio.be/android-feature-graphic-generator/](https://www.norio.be/android-feature-graphic-generator/)
 
-| Spacer/suffix  | Size in rems  | Rem converted to px |
-|:---------------|:--------------|:--------------------|
-| `1`            | 0.25rem       | 4px                 |
-| `2`            | 0.5rem        | 8px                 |
-| `3`            | 0.75rem       | 12px                |
-| `4`            | 1rem          | 16px                |
-| `5`            | 1.5rem        | 24px                |
-| `6`            | 2rem          | 32px                |
-| `7`            | 2.5rem        | 40px                |
-| `8`            | 3rem          | 48px                |
+1. When all necessary information is provided, click on `Save Draft`.
+1. Complete Content Rating
+1. Complete Pricing and Distribution
 
-#### Examples
-{: .no_toc }
+### Upload first apk
 
-In Markdown, use the `{: }` wrapper to apply custom classes:
+Upload the first apk manually (this is required so `App Store Connect` knows the App ID)
+1. Goto `App Releases` and open a beta track. Click on `Manage` and `Edit Release`
+1. Click on `Continue` to allow Google to manage app signing key
+1. Click on `Browse Files` to upload the current apk (built with `flutter build apk`) from `build/app/outputs/apk/release/app-release.apk`.
+1. Discard the beta track using the `Discard` button
 
-```markdown
-This paragraph will have a margin bottom of 1rem/16px at large screens.
-{: .mb-lg-4 }
-
-This paragraph will have 2rem/32px of padding on the right and left at all screen sizes.
-{: .px-6 }
-```
-
-## Vertical Alignment
-
-| Classname              | What it does                    |
-|:-----------------------|:--------------------------------|
-| `.v-align-baseline`    | `vertical-align: baseline`      |
-| `.v-align-bottom`      | `vertical-align: bottom`        |
-| `.v-align-middle`      | `vertical-align: middle`        |
-| `.v-align-text-bottom` | `vertical-align: text-bottom`   |
-| `.v-align-text-top`    | `vertical-align: text-top`      |
-| `.v-align-top`         | `vertical-align: top`           |
-
-## Display
-
-Display classes aid in adapting the layout of the elements on a page:
-
-| Class             |                         |
-|:------------------|:------------------------|
-| `.d-block`        | `display: block`        |
-| `.d-flex`         | `display: flex`         |
-| `.d-inline`       | `display: inline`       |
-| `.d-inline-block` | `display: inline-block` |
-| `.d-none`         | `display: none`         |
-
-Use these classes in conjunction with the responsive modifiers.
-
-#### Examples
-{: .no_toc }
-
-In Markdown, use the `{: }` wrapper to apply custom classes:
-
-```markdown
-This button will be hidden until medium screen sizes:
-
-[ A button ](#url)
-{: .d-none .d-md-inline-block }
-
-These headings will be `inline-block`:
-
-### heading 3
-{: .d-inline-block }
-
-### heading 3
-{: .d-inline-block }
-```
+---

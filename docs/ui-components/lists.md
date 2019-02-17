@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Lists
-parent: UI Components
+parent: App Configuration
 nav_order: 5
 ---
 

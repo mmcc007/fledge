@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Typography
-parent: UI Components
+title: Flutter
+parent: App Configuration
 nav_order: 1
 ---
 
-# Typography
+# Flutter
 {: .no_toc }
 
 ## Table of contents
@@ -16,9 +16,60 @@ nav_order: 1
 
 ---
 
-## Font stack
+## App Name and App ID
+The App Name and App ID are identifiers used by both stores. Separate identifiers can be used in each store. 
 
-By default, Just the Docs uses a native system font stack for sans-serif fonts:
+To make things simple, it is recommended to use the same identifiers in both stores.
+ 
+These identifiers will be used in several places to configure the app for release.
+ 
+1. Pick an App Name  
+The app name, which is what the user sees, should be unique in both stores. Let's say your app name is `MyUniqueAppName`.
+
+1. Pick an App ID  
+Decide on an Application ID for your app that is unique in both stores. For example, `com.mycompany.todo`.
+
+1. _Optional_: Version tracking  
+The build number and release tag change with each build and release of the app. It is useful to be able to embed these values in the build artifact. This allows tracing-back from any version of the app, running on any device, to the build and source code.  
+To enable build and release tracking comment-out the version in your pubspec.yaml:
+```yaml
+# version: 1.0.0+1
+```
+
+#### On ios:
+1. Open Xcode. For example:
+
+       open ios/Runner.xcworkspace
+    
+1. Update the `Display Name` to `MyUniqueAppName`.
+1. Update the `Bundle Identifier` to the same as the application id used on android, eg, `com.mycompany.todo`.
+
+    Note: `Version` and `Build` can be ignored. These are updated automatically by the CICD.
+1. In `Runner>Runner>Info.plist`, set `Bundle display name` to `MyUniqueAppName`.
+1. Disable automatic signing
+1. In `Signing (Release)` select the provisioning profile created during match setup.
+    For example, use the following provisioning profile:
+        
+        match AppStore com.mycompany.todo
+        
+    Note: if match is not already set-up you will have to return to this step after match is set-up.
+1. (Recommended) Icons  
+Upload will fail if required icons are missing from the Asset Catalog. To generate a complete set
+    of icons from a single image, see https://makeappicon.com. This will generate a complete Asset
+    Catalog. Overwrite the existing catalog using:
+
+        cp <location of downloaded icons>/ios/AppIcon.appiconset/* ios/Runner/Assets.xcassets/AppIcon.appiconset
+
+
+
+
+
+
+
+
+
+
+By default, Fledge uses a native system font stack for sans-serif fonts:
 
 ```scss
 -apple-system, BlinkMacSystemFont, "helvetica neue", helvetica, roboto, noto, "segoe ui", arial, sans-serif
@@ -28,7 +79,7 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
 {: .fs-5 .ls-10 .code-example }
 
-For monospace type, like code snippets or the `<pre>` element, Just the Docs uses a native system font stack for monospace fonts:
+For monospace type, like code snippets or the `<pre>` element, Fledge uses a native system font stack for monospace fonts:
 
 ```scss
 "SFMono-Regular", Menlo, Consolas, Monospace
@@ -42,7 +93,7 @@ abcdefghijklmnopqrstuvwxyz
 
 ## Responsive type scale
 
-Just the Docs uses a responsive type scale that shifts depending on the viewport size.
+Fledge uses a responsive type scale that shifts depending on the viewport size.
 
 | Selector              | Small screen size `font-size`    | Large screen size `font-size` |
 |:----------------------|:---------------------------------|:------------------------------|
@@ -107,7 +158,7 @@ Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 ---
 
-## Typographic Utilities
+## Typographic Stores Configuration
 
 There are a number of specific typographic CSS classes that allow you to override default styling for font size, font weight, line height, and capitalization.
 

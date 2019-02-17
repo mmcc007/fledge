@@ -8,7 +8,7 @@ nav_order: 2
 {: .no_toc }
 
 
-Just the Docs has some specific configuration parameters that can be defined in your Jekyll site's _config.yml file.
+Fledge has some specific configuration parameters that can be defined in your Jekyll site's _config.yml file.
 {: .fs-6 .fw-300 }
 
 ## Table of contents
@@ -20,7 +20,7 @@ Just the Docs has some specific configuration parameters that can be defined in 
 ---
 
 
-View this site's [_config.yml](https://github.com/pmarsceill/just-the-docs/tree/master/_config.yml) file as an example.
+View this site's [_config.yml](https://github.com/mmcc007/fledge/tree/master/_config.yml) file as an example.
 
 ## Search enabled
 
@@ -34,8 +34,8 @@ search_enabled: true
 ```yaml
 # Aux links for the upper right navigation
 aux_links:
-    "Just the Docs on GitHub":
-      - "//github.com/pmarsceill/just-the-docs"
+    "Fledge on GitHub":
+      - "//github.com/mmcc007/fledge"
 ```
 
 ## Color scheme

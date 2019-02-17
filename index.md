@@ -2,17 +2,17 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "Fledge is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
 permalink: /
 ---
 
-# Focus on writing good documentation
+# Auto app delivery to both stores.
 {: .fs-9 }
 
-Just the Docs gives your documentation a jumpstart with a responsive Jekyll theme that is easily customizable and hosted on GitHub Pages.
+Give your Flutter app a jumpstart with a responsive CI/CD tool that is easily customizable.
 {: .fs-6 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/pmarsceill/just-the-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/mmcc007/fledge){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
@@ -20,45 +20,58 @@ Just the Docs gives your documentation a jumpstart with a responsive Jekyll them
 
 ### Dependencies
 
-Just the Docs is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information. Just the Docs requires no special Jekyll plugins and can run on GitHub Pages' standard Jekyll compiler.
+Fledge is built for [Flutter](https://flutter.io/), which allows you to build beautiful native apps on iOS and Android from a single codebase. Fledge requires no special plugins and can run on public and private build servers in the cloud and in-house.
 
-### Quick start: Use as a GitHub Pages remote theme
+### Quick start: Use with GitHub and Travis
 
-1. Add Just the Docs to your Jekyll site's `_config.yml` as a [remote theme](https://blog.github.com/2017-11-29-use-any-theme-with-github-pages/)
-```yaml
-remote_theme: pmarsceill/just-the-docs
+1. Install Fledge to your local machine
 ```
-<small>You must have GitHub Pages enabled on your repo, one or more Markdown files, and a `_config.yml` file. [See an example repository](https://github.com/pmarsceill/jtd-remote)</small>
+$ pub global activate fledge
+```
+<small>You must have Travis enabled for your GitHub repo. [See your travis repositories](https://travis-ci.org/account/repositories)</small>
 
-### Local installation: Use the gem-based theme
+### Travis: Add secrets
 
-1. Install the Ruby Gem
+1. Secret variables  
+<small>Set your secret variables in:</small>  
+```
+https://travis-ci.org/<your name>/<your repo>/settings
+```
+![secret variables](./assets/images/travis_secret_env.png)  
+<small>These variables are used for signing and uploading to both stores.</small>
+
+### Local repo: Add app to Fledge
+
+1. Create a dev branch
+```
+git checkout -b dev
+```
+1. Install the Travis config file and Fastlane files
 ```bash
-$ gem install just-the-docs
+$ fledge config -b travis
 ```
-```yaml
-# .. or add it to your your Jekyll site’s Gemfile
-gem "just-the-docs"
+1. Push your local repo to the remote repo.
 ```
-2. Add Just the Docs to your Jekyll site’s `_config.yml`
-```yaml
-theme: "just-the-docs"
-```
-3. _Optional:_ Initialize search data (creates `search-data.json`)
-```bash
-$ bundle exec just-the-docs rake search:init
-```
-3. Run you local Jekyll server
-```bash
-$ jekyll serve
-```
-```bash
-# .. or if you're using a Gemfile (bundler)
-$ bundle exec jekyll serve
-```
-4. Point your web browser to [http://localhost:4000](http://localhost:4000)
+git push --set-upstream origin dev
+``` 
 
-### Configure Just the Docs
+### Local repo: Start a beta
+
+1. Run pipeline on Travis
+```
+$ fledge beta
+```
+<small>This will build your app, upload to both store consoles and release to beta testers.</small>
+
+### Local repo: Release
+
+1. Release to users
+```
+$ fledge release
+```
+<small>This will release the app to users.</small>
+
+### Configure Fledge
 
 - [See configuration options]({{ site.baseurl }}{% link docs/configuration.md %})
 
@@ -66,19 +79,19 @@ $ bundle exec jekyll serve
 
 ## About the project
 
-Just the Docs is &copy; 2017-2019 by [Patrick Marsceill](http://patrickmarsceill.com).
+Fledge is &copy; 2019 by [Maurice McCabe](http://mauricemccabe.com).
 
 ### License
 
-Just the Docs is distributed by an [MIT license](https://github.com/pmarsceill/just-the-docs/tree/master/LICENSE.txt).
+Fledge is distributed by an [MIT license](https://github.com/mmcc007/fledge/tree/master/LICENSE.txt).
 
 ### Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
-email, or any other method with the owners of this repository before making a change. Read more about becoming a contributor in [our GitHub repo](https://github.com/pmarsceill/just-the-docs#contributing).
+email, or any other method with the owners of this repository before making a change. Read more about becoming a contributor in [our GitHub repo](https://github.com/mmcc007/fledge#contributing).
 
 ### Code of Conduct
 
-Just the Docs is committed to fostering a welcoming community.
+Fledge is committed to fostering a welcoming community.
 
-[View our Code of Conduct](https://github.com/pmarsceill/just-the-docs/tree/master/CODE_OF_CONDUCT.md) on our GitHub repository.
+[View our Code of Conduct](https://github.com/mmcc007/fledge/tree/master/CODE_OF_CONDUCT.md) on our GitHub repository.
