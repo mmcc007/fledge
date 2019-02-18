@@ -14,7 +14,7 @@ Give your Flutter app a jumpstart with a responsive CI/CD tool that is easily cu
 
 Automatically build, test, sign and release your Flutter app to both Apple and Google stores.
 
-Supports public and private build servers in the cloud (Travis, Cirrus, etc...) and in-house (Jenkins, GitLab, etc...).
+Supports public and private build servers in both the cloud (Travis, Cirrus, etc...) and in-house (Jenkins, GitLab, etc...).
 
 There are many steps involved each time an app, or an app upgrade, is delivered to both stores. Fledge exists to document and automate these steps.
 
