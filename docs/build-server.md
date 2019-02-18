@@ -16,7 +16,7 @@ nav_order: 8
 ---
 
 ### Secret variables 
-Secret variables are used by passed into the pipeline by the build server during a Fletch pipeline run. 
+Secret variables are passed into the pipeline by the build server during a Fletch pipeline run. 
 
 Secret variables are never exposed by the build server in the logs (or anywhere else).
  
@@ -38,7 +38,9 @@ This is your Apple ID (without 2-factor authentication). For example, user@email
 This is your Apple ID password. For travis, if there are special characters the password should be enclosed in single quotes.
         
 * GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE  
-This is required to login to `Google Play Console`. This is a private key. It should be surrounded with single quotes to be accepted by Travis. It can be generated on [https://console.developers.google.com](https://console.developers.google.com). Note: this should never be included in your repo.
+This is required to login to `Google Play Console`. This is a private key. It should be surrounded with single quotes to be accepted by Travis. It can be generated on [https://console.developers.google.com](https://console.developers.google.com). 
+
+Note: this should never be included in your repo.
         
 * KEY_PASSWORD  
 This is the password to the encrypted app private key stored in `android/key.jks.enc` and the related encrypted properties files stored in `android/key.properties.enc`

@@ -19,7 +19,7 @@ nav_order: 3
 
 ### Screenshots  
 Screenshots must be included in upload for iOS. Screenshots can be generated automatically (for
-    both android and ios) using https://pub.dartlang.org/packages/screenshots. Alternatively
+    both android and ios) using [https://pub.dartlang.org/packages/screenshots](https://pub.dartlang.org/packages/screenshots). Alternatively
     they can be generated manually.
 
 ### App Store Icon  
