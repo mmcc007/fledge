@@ -39,6 +39,7 @@ For one way to generate a complete set of icons from a single image, see [https:
 ```
 cp -r <location of downloaded icons>/android/mipmap* android/app/src/main/res/
 ```
+See also: [https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html)
 
 ### App Signing
 
