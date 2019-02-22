@@ -1,6 +1,8 @@
 [![pub package](https://img.shields.io/pub/v/fledge.svg)](https://pub.dartlang.org/packages/fledge)
+[![Sauce Labs](art/Powered_by_Sauce_Labs_badges_gray.svg)][sauceLabsHomepage]
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Passarinho-azul-02.png" width="30%" title="Fledge" alt="Fledge">
+
 
 See [article](https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd) for introduction to Fledge.
 
@@ -86,3 +88,9 @@ When contributing to this repository, please feel free to discuss via issue or p
 # Code of Conduct
 
 Fledge is committed to fostering a welcoming community.
+
+### Big Thanks
+
+Cross-browser Testing Platform and Open Source <3 ♥Provided by [Sauce Labs][sauceLabsHomepage]
+
+[sauceLabsHomepage]: https://saucelabs.com
