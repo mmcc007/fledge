@@ -22,7 +22,7 @@ requires more setup.
 
 For a live example of
 CI (Continous Integration) for Flutter, including unit and integration testing in the cloud,
-see https://github.com/brianegan/flutter_architecture_samples.
+see [https://github.com/brianegan/flutter_architecture_samples](https://github.com/brianegan/flutter_architecture_samples).
 
 Support for CI (Continuous Integration) will be added in an upcoming release of Fledge.
 

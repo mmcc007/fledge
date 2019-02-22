@@ -25,7 +25,7 @@ Screenshots must be included in upload for iOS. Screenshots can be generated aut
 ### App Store Icon  
 iOS Apps must include a 1024x1024px App Store Icon in PNG format.
     
-See https://makeappicon.com/
+See [https://makeappicon.com](https://makeappicon.com)
 
 Store in `ios/fastlane/metadata/app_icon.png`
     
