@@ -1,5 +1,5 @@
 [![pub package](https://img.shields.io/pub/v/fledge.svg)](https://pub.dartlang.org/packages/fledge)
-[![Sauce Labs](art/Powered_by_Sauce_Labs_badges_gray.svg)][sauceLabsHomepage]
+<a href="https://saucelabs.com"><img src="art/Powered_by_Sauce_Labs_badges_gray.svg" alt="drawing" width="67.5"/></a>
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Passarinho-azul-02.png" width="30%" title="Fledge" alt="Fledge">
 
@@ -91,6 +91,6 @@ Fledge is committed to fostering a welcoming community.
 
 ### Big Thanks
 
-Cross-browser Testing Platform and Open Source <3 ♥Provided by [Sauce Labs][sauceLabsHomepage]
+Mobile Testing Platform and Open Source <3♥ Provided by [Sauce Labs][sauceLabsHomepage]
 
 [sauceLabsHomepage]: https://saucelabs.com
