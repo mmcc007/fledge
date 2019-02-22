@@ -23,12 +23,12 @@ to focus on developing and reducing time spent on repetitive tasks, such as test
 delivery, using automation. For more details see ([CICD](https://en.wikipedia.org/wiki/CI/CD)).
 
 This particular implementation of CICD is a slightly opinionated approach to CICD. It makes some simplifying assumptions
-that seems to work well with Flutter. Of course, these assumptions do not prohibit evolving other CICD workflows after starting with Fletch.
+that seems to work well with Flutter. Of course, these assumptions do not prohibit evolving other CICD workflows after starting with Fledge.
 
 ## CI/CD Workflows
-The idea behind Fletch is to support a simple, fully automated, workflow to get consistent and reliable releases to both stores for Flutter apps    .
+The idea behind Fledge is to support a simple, fully automated, workflow to get consistent and reliable releases to both stores for Flutter apps    .
 
-Fletch supports the following simple CICD workflows:
+Fledge supports the following simple CICD workflows:
 ### Beta testing workflow  
 All development occurs in the `dev` branch and when
 ready for beta, do a beta release to your beta tester
@@ -42,7 +42,7 @@ merged with the `master` branch and the release is uploaded to the `Apple Store`
 Google `Play Store`.
 
 ## Features
-Fletch provides the following features:
+Fledge provides the following features:
 ### Build artifact consistency
 The build artifact used to pass beta testing is the same build that is shipped to the stores. No rebuild
 required.
@@ -64,7 +64,7 @@ review time).
 This enables fast bug fixes.
 
 ### Flexible development environments
-A by-product of the Fletch workflows is that development macs are not
+A by-product of the Fledge workflows is that development macs are not
 required (except perhaps for setting-up match and for [screenshots](https://pub.dartlang.org/packages/screenshots)). Development can be done 
 on Windows or Linux machines. The build server will take care of the ios-specific details of
 building the ios app, starting the ios beta and release to the Apple Store.

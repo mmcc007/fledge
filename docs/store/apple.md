@@ -25,9 +25,9 @@ Screenshots must be included in upload for iOS. Screenshots can be generated aut
 ### App Store Icon  
 iOS Apps must include a 1024x1024px App Store Icon in PNG format.
     
-    See https://makeappicon.com/
+See https://makeappicon.com/
 
-    Store in `ios/fastlane/metadata/app_icon.png`
+Store in `ios/fastlane/metadata/app_icon.png`
     
 ### App Store Icon for iPad  
 Since flutter supports iPad, a related app icon is required of exactly '167x167' pixels, 

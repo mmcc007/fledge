@@ -16,7 +16,7 @@ nav_order: 8
 ---
 
 ### Secret variables 
-Secret variables are passed into the pipeline by the build server during a Fletch pipeline run. 
+Secret variables are passed into the pipeline by the build server during a Fledge pipeline run. 
 
 Secret variables are never exposed by the build server in the logs (or anywhere else).
  
