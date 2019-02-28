@@ -4,7 +4,7 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Passarinho-azul-02.png" width="30%" title="Fledge" alt="Fledge">
 
 
-See [article](https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd) for introduction to Fledge.
+See https://medium.com/@nocnoc/cicd-for-flutter-fdc07fe52abd for introduction to Fledge.
 
 # Fledge: A CICD tool for Flutter
 Automatically build, test, sign and release your Flutter app to both Apple and Google stores. 
@@ -49,6 +49,11 @@ For example, with GitHub and Travis:
     This will release the app to users.
 
 # Documentation
+As with any mobile app, there are several one-time setup tasks (most of which you have to do anyway… even without a CICD tool).
+
+To avoid having to gather together all the bits and pieces of information required to deliver a Flutter app, the Fledge project has created complete documentation to walk you thru all the setup tasks for the more common scenarios.
+
+One of the reasons the Fledge projects exists is to document these one-time setup tasks and progressively automate them where possible (and then remove from documentation).
 
 [View the documentation site](https://mmcc007.github.io/fledge/) for complete usage and configuration information.
 
