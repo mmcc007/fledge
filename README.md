@@ -55,6 +55,8 @@ To avoid having to gather together all the bits and pieces of information requir
 
 One of the reasons the Fledge projects exists is to document these one-time setup tasks and progressively automate them where possible (and then remove from documentation).
 
+[![Fledge Docs](art/fledge_docs.png)](https://mmcc007.github.io/fledge/)
+
 [View the documentation site](https://mmcc007.github.io/fledge/) for complete usage and configuration information.
 
 # Demo
