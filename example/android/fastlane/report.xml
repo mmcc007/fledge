@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: opt_out_usage" time="0.00604">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000713">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: Switch to android release_notes lane" time="0.000924">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: changelog_from_git_commits" time="0.033245">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: Switch to android get_build_name_and_build_number lane" time="0.001948">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: ../../script/ci-helper --get-build-number travis " time="2.240046">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: last_git_tag" time="0.019516">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: upload_to_play_store" time="3.141544">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

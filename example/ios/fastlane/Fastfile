@@ -1,0 +1,133 @@
+import "../../fastlane/Fastlane.common"
+
+#fastlane_version "2.55.0"
+opt_out_usage
+setup_travis
+
+default_platform(:ios)
+
+#setup_travis
+
+before_all do
+  #ensure_git_branch
+  #ensure_git_status_clean
+  #git_pull
+end
+
+def suppress_output
+  original_stdout, original_stderr = $stdout.clone, $stderr.clone
+  $stderr.reopen File.new('/dev/null', 'w')
+  $stdout.reopen File.new('/dev/null', 'w')
+  yield
+ensure
+  $stdout.reopen original_stdout
+  $stderr.reopen original_stderr
+end
+
+platform :ios do
+
+  desc "pre-build release"
+  private_lane :pre_build_release do
+    get_build_name_and_build_number
+    # cannot pass multiple ruby vars to shell so pass via env
+    #ensure_git_branchENV["BUILD_NAME"]=sh("../../script/ci-helper --format-ios-build-name #{@build_name}")
+    ENV["BUILD_NAME"]=@build_name
+    ENV["BUILD_NUMBER"]=@build_number
+
+    # cannot find pod??
+    #sh ("which pod && pod --version")
+    #sh ("cd .. && pod install")
+    #cocoapods
+
+    sh ("cd ../.. && flutter build ios --release --no-codesign --build-name=$BUILD_NAME --build-number=$BUILD_NUMBER")
+  end
+
+  desc "enable match code signing"
+  private_lane :enable_match_code_signing do
+    puts 'Retrieving signing certificates and profiles...'
+    # Stop fastlane from echoing back PUBLISHING_MATCH_CERTIFICATE_REPO var.
+    suppress_output {
+      # Retrieves all the necessary certs and provisioning profiles.
+      sync_code_signing(
+        git_url: ENV['PUBLISHING_MATCH_CERTIFICATE_REPO'],
+        type: 'appstore',
+        readonly: true
+      )
+    }
+    puts 'Certificates and profiles installed'
+
+  app_identifier=CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+  puts "app_identifier: #{app_identifier}"
+  profile_name='sigh_' + app_identifier + '_appstore_profile-path'
+
+    update_project_provisioning(
+      xcodeproj: 'Runner.xcodeproj',
+      target_filter: 'Runner',
+      build_configuration: 'Release',
+      profile: ENV[profile_name],
+    )
+  end
+
+  desc "build release"
+  private_lane :build_release do
+    pre_build_release
+    enable_match_code_signing
+    #disable_automatic_code_signing
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+    #enable_automatic_code_signing
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    #ensure_git_branch(branch: 'dev')
+    build_release
+    release_notes
+    upload_to_testflight(
+      changelog: changelog_from_git_commits,
+      beta_app_description: changelog_from_git_commits,
+      skip_waiting_for_build_processing: true,
+      #skip_screenshots: false,
+    )
+  end
+
+  desc "Promote latest release build from beta to production and publish to the App Store"
+  lane :release do
+    #ensure_git_branch(branch: 'master')
+    #build_release
+    #upload_to_app_store(force: true, precheck_include_in_app_purchases: false)
+    get_build_name_and_build_number
+    #upload_to_app_store(
+    deliver(
+      build_number: @build_number,
+      submit_for_review: false,
+      automatic_release: true,
+      force: true, # Skip HTMl report verification
+      #skip_metadata: true,
+      #skip_screenshots: true,
+      skip_screenshots: false,
+      skip_binary_upload: true,
+      price_tier: 0,
+      app_rating_config_path: "fastlane/rating_config.json",
+      # Comes from https://github.com/fastlane/fastlane/issues/5542#issuecomment-254201994
+      submission_information: {
+        add_id_info_limits_tracking: false,
+        add_id_info_serves_ads: false,
+        add_id_info_tracks_action: false,
+        add_id_info_tracks_install: false,
+        add_id_info_uses_idfa: false,
+        content_rights_has_rights: false,
+        content_rights_contains_third_party_content: false,
+        export_compliance_platform: 'ios',
+        export_compliance_compliance_required: false,
+        export_compliance_encryption_updated: false,
+        export_compliance_app_type: nil,
+        export_compliance_uses_encryption: false,
+        export_compliance_is_exempt: false,
+        export_compliance_contains_third_party_cryptography: false,
+        export_compliance_contains_proprietary_cryptography: false,
+        export_compliance_available_on_french_store: false
+      }
+    )
+  end
+
+end

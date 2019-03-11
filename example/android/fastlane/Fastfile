@@ -1,0 +1,52 @@
+import "../../fastlane/Fastlane.common"
+
+#fastlane_version "2.55.0"
+opt_out_usage
+
+before_all do
+  #ensure_git_branch
+  #ensure_git_status_clean
+  #git_pull
+end
+
+default_platform(:android)
+
+platform :android do
+
+  desc "Build and push to play store track"
+  private_lane :build_and_push_to_play_store_track do |options|
+    get_build_name_and_build_number
+    release_notes(OS: 'android')
+    sh ("cd ../.. && flutter build apk --build-name=#{@build_name} --build-number=#{@build_number}")
+    upload_to_play_store(
+      track: options[:track],
+      apk: '../build/app/outputs/apk/release/app-release.apk',
+      json_key_data: ENV['GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE'],
+      #skip_upload_screenshots: false,
+      #skip_upload_images: false
+    )
+  end
+
+  desc 'Push a release build to beta track'
+  lane :beta do
+    #ensure_git_branch(branch: 'dev')
+    build_and_push_to_play_store_track(track: "beta")
+  end
+
+  desc "Promote latest release build from beta to production and publish to the Play Store"
+  lane :release do
+    #ensure_git_branch(branch: 'master')
+    #build_and_push_to_play_store_track(track: "production")
+    release_notes(OS: 'android')
+    upload_to_play_store(
+      track: 'beta',
+      track_promote_to: 'production',
+      json_key_data: ENV['GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE'],
+      skip_upload_apk: true,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+    )
+  end
+
+end
