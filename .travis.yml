@@ -27,9 +27,9 @@ jobs:
         - sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
         # install version of fastlane from Gemfile.lock
-        - gem list bundler
-        - gem update --system
-        - gem list bundler
+#        - gem list bundler
+#        - gem update --system
+#        - gem list bundler
 #        - bundle update --bundler
         - gem install bundler:2.0.1
         - pwd
@@ -48,7 +48,8 @@ jobs:
         # fail on error
 #        - set -e
         - pwd
-        - (cd ios && bundle exec fastlane beta)
+        - ls -la
+        - (cd example/ios && bundle exec fastlane beta)
 
 
     # start android beta
@@ -71,9 +72,9 @@ jobs:
       language: generic
       before_install:
         # install version of fastlane from Gemfile.lock
-        - gem list bundler
-        - gem update --system
-        - gem list bundler
+#        - gem list bundler
+#        - gem update --system
+#        - gem list bundler
 #        - bundle update --bundler
         - gem install bundler:2.0.1
         - (cd example; bundle install)
@@ -114,7 +115,8 @@ jobs:
 #        - set -e
 
         - pwd
-        - (cd android && openssl enc -aes-256-cbc -d -in key.properties.enc -out key.properties -k $KEY_PASSWORD && openssl enc -aes-256-cbc -d -in key.jks.enc -out key.jks -k $KEY_PASSWORD && bundle exec fastlane beta)
+        - ls -la
+        - (cd example/android && openssl enc -aes-256-cbc -d -in key.properties.enc -out key.properties -k $KEY_PASSWORD && openssl enc -aes-256-cbc -d -in key.jks.enc -out key.jks -k $KEY_PASSWORD && bundle exec fastlane beta)
 
 
 
@@ -129,9 +131,9 @@ jobs:
         - sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
         # install version of fastlane from Gemfile.lock
-        - gem list bundler
-        - gem update --system
-        - gem list bundler
+#        - gem list bundler
+#        - gem update --system
+#        - gem list bundler
 #        - bundle update --bundler
         - gem install bundler:2.0.1
         - (cd example; bundle install)
@@ -140,4 +142,5 @@ jobs:
 #        - set -e
 
         - pwd
-        - (cd android && bundle exec fastlane release && cd ../ios && bundle exec fastlane release)
+        - ls -la
+        - (cd example/android && bundle exec fastlane release && cd ../ios && bundle exec fastlane release)
