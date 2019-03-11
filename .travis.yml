@@ -30,7 +30,7 @@ jobs:
         - gem list bundler
         - gem update --system
         - gem list bundler
-        - bundle update --bundler
+#        - bundle update --bundler
         - gem install bundler:2.0.1
         - (cd example; bundle install)
 
@@ -71,7 +71,7 @@ jobs:
         - gem list bundler
         - gem update --system
         - gem list bundler
-        - bundle update --bundler
+#        - bundle update --bundler
         - gem install bundler:2.0.1
         - (cd example; bundle install)
 
@@ -128,7 +128,7 @@ jobs:
         - gem list bundler
         - gem update --system
         - gem list bundler
-        - bundle update --bundler
+#        - bundle update --bundler
         - gem install bundler:2.0.1
         - (cd example; bundle install)
       script:
