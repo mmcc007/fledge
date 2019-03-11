@@ -15,22 +15,25 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-### start_beta
+### release_notes
 ```
-fastlane start_beta
+fastlane release_notes
 ```
-Start a new beta by creating a tag for next release.
+Generate release notes
 
-'bump' options are: major, minor, patch (default).
+----
 
-This will trigger the CICD to deliver the beta to testers.
-### release
+## Android
+### android beta
 ```
-fastlane release
+fastlane android beta
 ```
-Complete current beta and release app by merging from dev to master.
-
-This will trigger the CICD to deliver the latest app build to the Apple Store and Play Store.
+Push a release build to beta track
+### android release
+```
+fastlane android release
+```
+Promote latest release build from beta to production and publish to the Play Store
 
 ----
 

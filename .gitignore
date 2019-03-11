@@ -12,5 +12,5 @@ doc/api/
 
 # idea
 .idea
-ios/
-android/
+#ios/
+#android/
