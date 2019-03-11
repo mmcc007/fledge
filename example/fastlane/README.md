@@ -31,11 +31,6 @@ fastlane release
 Complete current beta and release app by merging from dev to master.
 
 This will trigger the CICD to deliver the latest app build to the Apple Store and Play Store.
-### test
-```
-fastlane test
-```
-
 
 ----
 

@@ -5,7 +5,29 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: opt_out_usage" time="0.00821">
+      <testcase classname="fastlane.lanes" name="0: opt_out_usage" time="0.004353">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: last_git_tag" time="0.014204">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: ../script/semver bump major 0.0.0" time="0.008104">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: git tag 1.0.0
+" time="0.011186">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: git push origin 1.0.0
+" time="5.893375">
         
       </testcase>
     
