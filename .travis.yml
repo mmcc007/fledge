@@ -27,7 +27,7 @@ jobs:
         - sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
         # install version of fastlane from Gemfile.lock
-        - bundle install > /dev/null
+        - (cd example; bundle install)
 
         # install flutter
         - FLUTTER_CHANNEL=stable
