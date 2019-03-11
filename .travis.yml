@@ -30,6 +30,8 @@ jobs:
         - gem list bundler
         - gem update --system
         - gem list bundler
+        - bundle update --bundler
+        - gem install bundler:2.0.1
         - (cd example; bundle install)
 
         # install flutter
@@ -43,9 +45,6 @@ jobs:
       script:
         # fail on error
 #        - set -e
-        - gem list bundler
-        - gem update --system
-        - gem list bundler
         - (cd example/ios && bundle exec fastlane beta)
 
 
@@ -68,6 +67,14 @@ jobs:
       env: Deploy beta to android testers
       language: generic
       before_install:
+        # install version of fastlane from Gemfile.lock
+        - gem list bundler
+        - gem update --system
+        - gem list bundler
+        - bundle update --bundler
+        - gem install bundler:2.0.1
+        - (cd example; bundle install)
+
         - ANDROID_COMPILE_SDK=28
         - ANDROID_BUILD_TOOLS=28.0.1
         - ANDROID_SDK_TOOLS=4333796
@@ -90,15 +97,8 @@ jobs:
         - sdkmanager --list | head -15
 
       install:
-        - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
-
-        # install version of fastlane from Gemfile.lock
-        - gem list bundler
-        - gem update --system
-        - gem list bundler
-        - (cd example; bundle install)
-
         # install flutter
+        - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
         - FLUTTER_CHANNEL=stable
         - FLUTTER_VERSION=1.0.0-${FLUTTER_CHANNEL}
         - wget --quiet --output-document=flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/${FLUTTER_CHANNEL}/linux/flutter_linux_v${FLUTTER_VERSION}.tar.xz && tar xf flutter.tar.xz > /dev/null && rm flutter.tar.xz
@@ -125,6 +125,11 @@ jobs:
         - sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
         # install version of fastlane from Gemfile.lock
+        - gem list bundler
+        - gem update --system
+        - gem list bundler
+        - bundle update --bundler
+        - gem install bundler:2.0.1
         - (cd example; bundle install)
       script:
         # fail on error
