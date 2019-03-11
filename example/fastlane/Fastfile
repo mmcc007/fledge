@@ -1,0 +1,41 @@
+opt_out_usage
+
+before_all do
+  #ensure_git_branch
+  #ensure_git_status_clean
+  #git_pull
+end
+
+desc "Start a new beta by creating a tag for next release."
+desc "'bump' options are: major, minor, patch (default)."
+desc "This will trigger the CICD to deliver the beta to testers."
+lane :start_beta do | options |
+  # increment the semver git tag
+  bump = options[:bump]
+  bump = 'patch' if bump.nil? || bump.empty?
+  version = sh "../script/semver bump #{bump} #{last_git_tag}"
+  puts "version = #{version}"
+  #puts "ci_build_number = #{ci_build_number}"
+
+  # commit tag to trigger build of app and release as beta
+  sh "git tag #{version}"
+  sh "git push origin #{version}"
+end
+
+desc "Complete current beta and release app by merging from dev to master."
+desc "This will trigger the CICD to deliver the latest app build to the Apple Store and Play Store."
+lane :release do | options |
+  # dev should be committed
+  #ensure_git_branch dev
+  ensure_git_status_clean
+  sh "git checkout dev"
+  # push what ever is in dev to origin so other developers can pick it up
+  # (if not already done)
+  sh "git push origin"
+  # commit dev to master to trigger CICD to complete beta and release
+  sh "git checkout master"
+  sh "git merge dev"
+  sh "git push origin"
+  # return to dev branch
+  sh "git checkout dev"
+end
