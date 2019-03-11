@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+show_usage() {
+    printf "\n\nusage: $0 [--get-build-number <ci-server> [<project-id>]] [--format-ios-build-name <build-name>] [--build-ios-release <build-name> <build-number>]
+
+Tool for managing CI builds.
+
+where:
+    --get-build-number
+        get current build number from specified CI server
+        where ci-server is one of:
+            travis
+            gitlab (requires <project-id>)
+    --format-ios-build-name <build-name>
+        return formatted build-name eg, v1.0.0 => 1.0.0
+    --build-ios-release <build-name> <build-number>
+        build unsigned release
+"
+    exit 1
+}
+
+get_build_number_travis(){
+    build_number=`travis history | head -1 | sed -E 's/^#([0-9]+).*/\1/'`
+    echo $build_number
+}
+
+get_build_number_gitlab(){
+    local project_id=$1
+    build_number=`gitlab project-pipeline list --project-id ${project_id} | head -1 | sed -E 's/^id: ([0-9]+).*/\1/'`
+    echo $build_number
+}
+
+# attempt to correct format of build_name for ios (always succeeds)
+format_ios_build_name(){
+    local build_name=$1
+    build_name=`echo $build_name | sed -E 's/^v([0-9]+\.[0-9]+\.[0-9]+)/\1/'`
+    echo $build_name
+}
+
+build_ios_release(){
+    local build_name=$1
+    local build_number=$2
+    flutter build ios --release --no-codesign --build-name=$build_name --build-number=$build_number
+}
+
+case $1 in
+    --get-build-number)
+        case $2 in
+            travis)
+                get_build_number_travis
+                ;;
+             gitlab)
+                if [ -z $3 ]; then
+                    echo "Error: project-id required"
+                    show_usage
+                fi
+                get_build_number_gitlab $3
+                ;;
+            *)
+                echo "Error: unknown ci-server: $2"
+                show_usage
+        esac
+        ;;
+    --format-ios-build-name)
+        if [ -z $2 ]; then
+            echo "Error: build-name required"
+            show_usage
+        fi
+        format_ios_build_name $2
+        ;;
+    --build-ios-release)
+        if [ -z $2 ]; then
+            echo "Error: build-name required"
+            show_usage
+        fi
+        if [ -z $3 ]; then
+            echo "Error: build-number required"
+            show_usage
+        fi
+        build_ios_release $2 $3
+        ;;
+    *)
+        echo "Error: unknown option: $1"
+        show_usage
+esac
