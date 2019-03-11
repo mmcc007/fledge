@@ -13,7 +13,8 @@ lane :start_beta do | options |
   # increment the semver git tag
   bump = options[:bump]
   bump = 'patch' if bump.nil? || bump.empty?
-  version = sh "../script/semver bump #{bump} #{last_git_tag}"
+  last_used_git_tag=sh "git tag|tail -1"
+  version = sh "../script/semver bump #{bump} #{last_used_git_tag}"
   puts "version = #{version}"
   #puts "ci_build_number = #{ci_build_number}"
 
