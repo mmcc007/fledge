@@ -26,7 +26,7 @@ This includes changing contact information required by both Google and Apple, ch
     the app for android and ios (for example, using `MyUniqueAppName`), and other metadata.
 
 The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metadata'.
-app_identifier
+
 ### App ID
 Using your application ID:
 
@@ -34,7 +34,7 @@ Using your application ID:
     ```
     app_identifier("com.mycompany.todo")
     ```
-    Note: it has been reported that your Team ID should also be provided in the Appfile. 
+    Note: it has been reported that your Team ID should also be provided in the this Appfile. 
 1. Update the `package_name` in `android/fastlane/Appfile`:
     ```
     package_name("com.mycompany.todo")
