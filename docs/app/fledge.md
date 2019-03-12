@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Fledge Installation
+title: Fledge
 parent: App Configuration
 nav_order: 0
 ---
