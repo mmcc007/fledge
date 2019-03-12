@@ -18,7 +18,7 @@ nav_order: 5
 ### Installing Fastlane
 Note: Fledge has no local dependency on Fastlane, so it is not necessary to install Fastlane on your local machine.
 
-### Metadata
+### Metadata updates
 Metadata is the extra information about the app required by both stores. Fastlane maintains the metadata of the app and uploads it to both stores during a Fledge pipeline run.
 
 Modify the Fastlane metadata to suit your needs.  
@@ -27,20 +27,28 @@ This includes changing contact information required by both Google and Apple, ch
 
 The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metadata'.
 
-### App ID
-Using your application ID:
-
-1. Update the `app_identifier` in `ios/fastlane/Appfile`:
+### Appfile updates
+For iOS, make the following changes to the Appfile in `ios/fastlane/Appfile:
+1. Update the `app_identifier`:
     ```
-    app_identifier("com.mycompany.todo")
+    app_identifier("<eg, com.mycompany.todo>")
     ```
-    Note: it has been reported that your Team ID should also be provided in the this Appfile. 
+    
+1. Update the `itc_team_id`:  
+    ```
+    itc_team_id("<eg, 118607454>") # App Store Connect Team ID
+    ``` 
+1. Update the `team_id`:  
+    ```
+    team_id("<eg, ET2VMHJPVM>") # Developer Portal Team ID
+    ``` 
+For android, make the following changes to the Appfile in `android/fastlane/Appfile:
 1. Update the `package_name` in `android/fastlane/Appfile`:
     ```
-    package_name("com.mycompany.todo")
+    package_name("<eg, com.mycompany.todo>")
     ```
 
-## Apple Account Config  
+## Apple Account config  
 
 If your Apple ID under your Apple Developer Account has 2-factor authentication enabled, Fastlane will require a new Apple ID without 2-factor authentication. 
 
