@@ -1,3 +1,14 @@
+## 0.1.3
+
+- Fixed provisioning profile name on iOS build
+
+## 0.1.2
+
+- Removed local Fastlane dependency.  
+Allows Fledge to run on macOS, Linux, and Windows.
+- Added example app demoing integration to build server.  
+Demo runs on travis, and can run on other build servers.
+
 ## 0.1.1
 
 - Updated docs
