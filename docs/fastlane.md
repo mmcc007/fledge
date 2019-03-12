@@ -16,14 +16,7 @@ nav_order: 5
 ---
 
 ### Installing Fastlane
-Install fastlane using
-```
-# Using RubyGems
-sudo gem install fastlane -NV
-
-# Alternatively using Homebrew
-brew cask install fastlane
-```
+Note: Fledge has no local dependency on Fastlane, so it is not necessary to install Fastlane on your local machine.
 
 ### Metadata
 Metadata is the extra information about the app required by both stores. Fastlane maintains the metadata of the app and uploads it to both stores during a Fledge pipeline run.
@@ -33,13 +26,19 @@ This includes changing contact information required by both Google and Apple, ch
     the app for android and ios (for example, using `MyUniqueAppName`), and other metadata.
 
 The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metadata'.
-
+app_identifier
 ### App ID
-Update the `package_name` in `ios/fastlane/Appfile` and `android/fastlane/Appfile` to your 
-application ID. For example:
-```
-package_name("com.mycompany.todo")
-```
+Using your application ID:
+
+1. Update the `app_identifier` in `ios/fastlane/Appfile`:
+    ```
+    app_identifier("com.mycompany.todo")
+    ```
+    Note: it has been reported that your Team ID should also be provided in the Appfile. 
+1. Update the `package_name` in `android/fastlane/Appfile`:
+    ```
+    package_name("com.mycompany.todo")
+    ```
 
 ## Apple Account Config  
 
@@ -47,7 +46,7 @@ If your Apple ID under your Apple Developer Account has 2-factor authentication 
 
 A new Apple ID can be created using your existing Apple Developer account. See [https://appstoreconnect.apple.com/access/users](https://appstoreconnect.apple.com/access/users). It should be set to have access to your app in `App Store Connect`. 
 
-To complete the setup of your new Apple ID, log out and log back in, using your new Apple ID.
+To complete the setup of your new Apple ID, it is important that you log out and log back in, using your new Apple ID. When logging back-in you will be prompted to setup security questions and answers. This is required as part of the normal account setup process for your new Apple ID. 
 
 The Apple ID's username and password are used by the build server secret variables `FASTLANE_USER` and `FASTLANE_PASSWORD`.
 
