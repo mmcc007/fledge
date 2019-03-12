@@ -34,7 +34,7 @@ Fledge is a command line utility used to control the entire CI/CD process. It pl
 The Fastlane files are committed to the remote repo and called by the build server.
 1. Deliver the build server file to the Flutter project.  
 The build server file is used to set-up the environment for running the Fastlane files in a suitable macOS and Linux environment.
-1. Control the beta releases.
+1. Control the beta releases.  
 When the app is ready for a beta release (for example, after a new features is added or a bug is fixed), a Fledge command will trigger the build server to begin a beta release to both store consoles.
 1. Control the releases to both stores.  
 At the point when each beta is ready for release, a Fledge command will trigger the build server to begin a release to both stores.
