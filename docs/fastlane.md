@@ -33,7 +33,6 @@ For iOS, make the following changes to the Appfile in `ios/fastlane/Appfile:
     ```
     app_identifier("<eg, com.mycompany.todo>")
     ```
-    
 1. Update the `itc_team_id`:  
     ```
     itc_team_id("<eg, 118607454>") # App Store Connect Team ID
@@ -41,9 +40,10 @@ For iOS, make the following changes to the Appfile in `ios/fastlane/Appfile:
 1. Update the `team_id`:  
     ```
     team_id("<eg, ET2VMHJPVM>") # Developer Portal Team ID
-    ``` 
-For android, make the following changes to the Appfile in `android/fastlane/Appfile:
-1. Update the `package_name` in `android/fastlane/Appfile`:
+    ```
+
+For android, make the following changes to the Appfile in `android/fastlane/Appfile`:
+1. Update the `package_name`:
     ```
     package_name("<eg, com.mycompany.todo>")
     ```
