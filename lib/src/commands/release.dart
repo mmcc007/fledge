@@ -17,8 +17,8 @@ class ReleaseCommand extends Command {
 
   // [run] may also return a Future.
   void run() {
-    final betaCommand = BetaCommand();
-    betaCommand.validateRepo();
+    var validateErrorMsg = BetaCommand.validateRepo();
+    if (validateErrorMsg != null) usageException(validateErrorMsg);
 
 //    # dev should be committed
 //    #ensure_git_branch dev

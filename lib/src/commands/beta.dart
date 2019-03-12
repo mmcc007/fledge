@@ -52,7 +52,8 @@ class BetaCommand extends PubCommand {
 
   // [run] may also return a Future.
   void run() {
-    validateRepo();
+    var validateErrorMsg = validateRepo();
+    if (validateErrorMsg != null) usageException(validateErrorMsg);
 
     // create git tag if none exists
     if (git.runSync(['tag']).isEmpty) git.runSync(['tag', '0.0.0']);
@@ -85,21 +86,23 @@ class BetaCommand extends PubCommand {
     log.message('Beta release of $newTag started on build server.');
   }
 
-  void validateRepo() {
-    if (!entryExists('.git'))
-      usageException('Error: git repository must exist');
+  static String validateRepo() {
+    String errorMessage;
+//    if (!entryExists('.git')) errorMessage = 'Error: git repository must exist';
 
     final gitResult = git.runSync(['branch']);
     if (!(gitResult.isNotEmpty && gitResult[0].contains('dev')))
-      usageException(
-          'Error: must be in dev branch and all files committed and pushed');
+      errorMessage =
+          'Error: must be in dev branch and all files committed and pushed';
 
     //    // check if files committed and pushed
     //    if (git.runSync(['status', '-s']).isNotEmpty)
     //      usageException('Error: all dev files must be committed and pushed');
 
     if (git.runSync(['log', 'origin/dev..dev']).isNotEmpty)
-      usageException('Error: all dev files must be pushed');
+      errorMessage = 'Error: all dev files must be pushed';
+
+    return errorMessage;
   }
 
   String incrementSemverTag(Semver semver, [String workingDir = '.']) {
