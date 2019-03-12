@@ -80,7 +80,7 @@ $ fledge release
 
 ## About the project
 
-Fledge is &copy; 2019 by [Maurice McCabe](http://mauricemccabe.com).
+Fledge is &copy; 2019 by [Maurice McCabe](http://mauricemccabe.com) and Contributors.
 
 ### License
 
