@@ -38,7 +38,24 @@ This is your Apple ID (without 2-factor authentication). For example, user@email
 This is your Apple ID password. For travis, if there are special characters the password should be enclosed in single quotes.
         
 * GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE  
-This is required to login to `Google Play Console`. This is a private key. It should be surrounded with single quotes to be accepted by Travis. It can be generated on [https://console.developers.google.com](https://console.developers.google.com). 
+This is required to login to `Google Play Console`. This is a private key. It should be surrounded with single quotes to be accepted by Travis.
+
+Follow these steps to create your private key:
+1. Open the [Google Play Console](https://play.google.com/apps/publish/)
+2. Click the _Settings_ menu entry, followed by _API access_
+3. Click the _CREATE SERVICE ACCOUNT_ button
+4. Follow the _Google Developers Console_ link in the dialog, which opens a new tab/window:
+   1. Click the _CREATE SERVICE ACCOUNT_ button at the top of the _Google Developers Console_
+   2. Provide a `Service account name`
+   3. Click _Select a role_ and choose _Service Accounts > Service Account User_
+   4. Check the _Furnish a new private_ key checkbox
+   5. Make sure _JSON_ is selected as the Key type
+   6. Click _SAVE_ to close the dialog
+   7. Make a note of the file name of the JSON file downloaded to your computer
+5. Back on the _Google Play Console_, click _DONE_ to close the dialog
+6. Click on _Grant Access_ for the newly added service account
+7. Choose _Release Manager_ (or alternatively _Project Lead_) from the Role dropdown. (Note that choosing _Release Manager_ grants access to the production track and all other tracks. Choosing _Project Lead_ grants access to update all tracks except the production track.)
+8. Click _ADD USER_ to close the dialog
 
 Note: this should never be included in your repo.
         
