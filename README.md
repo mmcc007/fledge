@@ -93,7 +93,9 @@ When contributing to this repository, please feel free to discuss via issue or p
 
 [Issues](https://github.com/mmcc007/screenshots/issues) and [pull requests](https://github.com/mmcc007/screenshots/pulls) are welcome.
 
-Your feedback is welcome and is used to guide where development effort is focused. So feel free to create as many issues and pull requests as you see fit. You should expect a timely and considered response.
+Your feedback is used to guide where development effort is focused. So feel free to create as many issues and pull requests as you want. You should expect a timely and considered response.
+
+BTW: to contribute to the manual, fork the project and make updates to the gh-pages branch. Then create a PR. The manual is a collection of markdown docs (like the README.md).
 
 # Code of Conduct
 
