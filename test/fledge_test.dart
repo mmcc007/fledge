@@ -25,4 +25,11 @@ void main() {
 
     git.runSync(['push', 'origin', newTag]);
   });
+
+  test('issue #19, checking for dev branch', () {
+    // check for dev in alphabetical list of branches
+    final branches = git.runSync(['branch']);
+    expect(branches.contains('* dev'), true);
+    expect(BetaCommand.validateRepo(), isNull);
+  });
 }
