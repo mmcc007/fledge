@@ -14,7 +14,7 @@ class BetaCommand extends PubCommand {
   // subclass.
   final name = "beta";
   final description =
-      "Triggers the build server to start a beta build and release to testers in both stores.";
+      "Triggers the build server to start a beta build and release to testers in both store consoles.";
 
   BetaCommand() {
     // [argParser] is automatically created by the parent class.
@@ -38,16 +38,6 @@ class BetaCommand extends PubCommand {
         valueHelp: 'app dir',
         hide: true,
         defaultsTo: '.');
-//    argParser.addFlag('dry-run',
-//        abbr: 'n',
-//        negatable: false,
-//        help: "Report what dependencies would change but don't change any.");
-//
-//    argParser.addFlag('precompile',
-//        defaultsTo: true,
-//        help: "Precompile executables and transformed dependencies.");
-//
-//    argParser.addFlag('working-dir', negatable: true, hide: true);
   }
 
   // [run] may also return a Future.
@@ -64,7 +54,6 @@ class BetaCommand extends PubCommand {
     var semver =
         Semver.values.firstWhere((e) => e.toString() == 'Semver.' + release);
 
-//    final workingDir = 'example';
     final workingDir = argResults['appdir'];
 
     var newTag = incrementSemverTag(semver, workingDir);
@@ -72,17 +61,6 @@ class BetaCommand extends PubCommand {
     // trigger beta release on build server
     git.runSync(['push', 'origin', newTag]);
 
-//
-//    var result = runProcessSync('git', ['tag']);
-//    if (result.success) {
-//      if (result.stdout.isEmpty) runProcessSync('git', ['tag', '0.0.0']);
-//      result = runProcessSync('fastlane', ['start_beta']);
-//      for (final line in result.stdout) print(line);
-//    }
-//    if (!result.success) {
-//      for (final line in result.stderr) print(line);
-//      usageException('Error: beta failed to start');
-//    }
     log.message('Beta release of $newTag started on build server.');
   }
 
@@ -90,15 +68,17 @@ class BetaCommand extends PubCommand {
     String errorMessage;
 //    if (!entryExists('.git')) errorMessage = 'Error: git repository must exist';
 
-    final gitResult = git.runSync(['branch']);
-    if (!(gitResult.isNotEmpty && gitResult[0].contains('dev')))
+    // check if in dev branch
+    final branches = git.runSync(['branch']);
+    if (!(branches.isNotEmpty && branches.contains('* dev')))
       errorMessage =
           'Error: must be in dev branch and all files committed and pushed';
 
-    //    // check if files committed and pushed
-    //    if (git.runSync(['status', '-s']).isNotEmpty)
-    //      usageException('Error: all dev files must be committed and pushed');
+    // check if files committed and pushed
+    if (git.runSync(['status', '-s']).isNotEmpty)
+      errorMessage = 'Error: all dev files must be committed and pushed';
 
+    // check if all files pushed
     if (git.runSync(['log', 'origin/dev..dev']).isNotEmpty)
       errorMessage = 'Error: all dev files must be pushed';
 
