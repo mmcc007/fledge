@@ -78,7 +78,7 @@ class BetaCommand extends PubCommand {
     if (git.runSync(['status', '-s']).isNotEmpty)
       errorMessage = 'Error: all dev files must be committed and pushed';
 
-    // check if all files committed
+    // check if all files pushed
     if (git.runSync(['log', 'origin/dev..dev']).isNotEmpty)
       errorMessage = 'Error: all dev files must be pushed';
 
