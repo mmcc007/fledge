@@ -81,7 +81,7 @@ jobs:
         - mkdir -p ~/.android
         - touch ~/.android/repositories.cfg
         # install correct version of java on osx (for sdkmanager to run)
-#        - brew cask uninstall java; brew tap caskroom/versions; brew cask install java8;
+        - brew cask uninstall java; brew tap caskroom/versions; brew cask install java8;
         # Accept licenses before installing components
         - yes | sdkmanager --licenses
         # Platform tools
