@@ -23,7 +23,14 @@ $ pub global activate fledge
 ### Windows
 On windows, make sure 7zip (7za.exe) is on the path.
 
-You can download it from:
-https://www.7-zip.org/
+You can download it from:  
+[https://www.7-zip.org/](https://www.7-zip.org/)
+
+## Upgrade
+To upgrade simply re-issue the command:
+```
+$ pub global activate fledge
+```
+
 
 ---

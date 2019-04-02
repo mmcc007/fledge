@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-nav_order: 1
+nav_order: 0
 description: "Fledge - CI/CD for flutter. Automatically build, test (including integration tests), sign and release your Flutter app to both Apple and Google stores. Supports tracing-back from any version of app to your source code."
 permalink: /
 ---
