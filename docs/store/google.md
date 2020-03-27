@@ -32,20 +32,24 @@ For Feature Graphic generation see [https://www.norio.be/android-feature-graphic
 
 1. When all necessary information is provided, click on `Save Draft`.
 
-1. Complete Content Rating
+1. Complete Content Rating (requires an .apk)
 
 1. Complete Pricing and Distribution
 
-### Upload first apk
+### Enable automatic uploads
+Google Play Console requires uploading the app for the first time manually. 
+(AFAIK this is required so `Google Play Console` knows the App ID). We will use the beta track to do the upload and then delete it when done. Fledge will be able to do uploads automatically after this.
 
-Upload the first apk manually (this is required so `App Store Connect` knows the App ID)
-
-1. Goto `App Releases` and open a beta track. Click on `Manage` and `Edit Release`
+1. Goto `App Releases` and open a beta track. Click on `Manage` and `Create Release`
 
 1. Click on `Continue` to allow Google to manage app signing key
 
-1. Click on `Browse Files` to upload the current apk (built with `flutter build apk`) from `build/app/outputs/apk/release/app-release.apk`.
+1. Click on `Browse Files` to upload either  
+a) the current apk (built with `flutter build apk`) from `build/app/outputs/apk/release/app-release.apk`.  
+or  
+b) the current aab (built with `flutter build bundle`) from `build/app/outputs/bundle/release/app-release.aab`.
 
-1. Discard the beta track using the `Discard` button
+1. Discard the pending beta track release using the `Discard` button  
+(since fledge uses the alpha track by default)
 
 ---
