@@ -21,12 +21,13 @@ Commit files on your local repo
 ### Create dev branch  
 Create a `dev` branch on your local repo
 
+        git branch dev
         git checkout -b dev
 
 ### Push to remote  
 Push your local repo to the remote repo.
 
-        git push --set-upstream origin dev
+        git push origin dev
 
 ### _Recommended_: Protect master branch  
 On the repo server, it is recommended to set the `master` branch to protected and `dev` as the default branch. This is to prevent accidental manual pushes to the `master` branch.
