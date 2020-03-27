@@ -1,3 +1,8 @@
+env:
+  global:
+    - FLUTTER_CHANNEL=stable
+    - FLUTTER_VERSION="1.12.13+hotfix.8-${FLUTTER_CHANNEL}"
+
 jobs:
   include:
 
@@ -20,7 +25,7 @@ jobs:
       os: osx
 #      osx_image: xcode8.0
       language: generic
-      env: Deploy beta to ios testers
+      env: "Deploy beta to ios testers"
 
       install:
         # fix timezone warning on osx
@@ -31,8 +36,6 @@ jobs:
         - (cd example; bundle install)
 
         # install flutter
-        - FLUTTER_CHANNEL=stable
-        - FLUTTER_VERSION=1.0.0-${FLUTTER_CHANNEL}
         - wget --quiet --output-document=flutter.zip https://storage.googleapis.com/flutter_infra/releases/${FLUTTER_CHANNEL}/macos/flutter_macos_v${FLUTTER_VERSION}.zip && unzip -qq flutter.zip > /dev/null && rm flutter.zip
         - export PATH="$PATH":"$PWD/.pub-cache/bin"
         - export PATH=$PWD/flutter/bin:$PWD/flutter/bin/cache/dart-sdk/bin:$PATH
@@ -60,7 +63,7 @@ jobs:
 #          - dev
 #          - master
 #      os: trusty
-      env: Deploy beta to android testers
+      env: "Deploy beta to android testers"
       language: generic
       before_install:
         # install version of fastlane from Gemfile.lock
@@ -91,8 +94,6 @@ jobs:
       install:
         # install flutter
         - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
-        - FLUTTER_CHANNEL=stable
-        - FLUTTER_VERSION=1.0.0-${FLUTTER_CHANNEL}
         - wget --quiet --output-document=flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/${FLUTTER_CHANNEL}/linux/flutter_linux_v${FLUTTER_VERSION}.tar.xz && tar xf flutter.tar.xz > /dev/null && rm flutter.tar.xz
         - export PATH="$PATH":"$PWD/.pub-cache/bin"
         - export PATH=$PWD/flutter/bin:$PWD/flutter/bin/cache/dart-sdk/bin:$PATH
