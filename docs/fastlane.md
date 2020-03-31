@@ -50,14 +50,23 @@ For android, make the following changes to the Appfile in `android/fastlane/Appf
 
 ## Apple Account config  
 
-If your Apple ID under your Apple Developer Account has 2-factor authentication enabled, Fastlane will require a new Apple ID without 2-factor authentication. 
+If your Apple ID under your Apple Developer Account has 2-factor authentication (2FA) enabled, Fastlane will not work in a CI environment. 
 
-A new Apple ID can be created using your existing Apple Developer account. See [https://appstoreconnect.apple.com/access/users](https://appstoreconnect.apple.com/access/users). It should be set to have access to your app in `App Store Connect`. 
+There are at lease two methods for getting around 2FA, one of which is currently supported by Fledge.
+
+1. A new Apple ID without 2FA (supported) 
+
+    A new Apple ID can be created using your existing Apple Developer account. See [https://appstoreconnect.apple.com/access/users](https://appstoreconnect.apple.com/access/users). It should be set to have access to your app in `App Store Connect`. 
  
-When creating a new account, you will need to supply another email address. An invitation is sent to that address, which you must use to create a new account. During account creation, you will have to provide a password and three security questions. Two security questions must be answered every time you log in on the apple website because you don't have 2 step verification enabled. Don't worry though: these questions are not triggered when you use the account in a scripted environment like Fledge.
+    When creating a new account, you will need to supply another email address. An invitation is sent to that address, which you must use to create a new account. During account creation, you will have to provide a password and three security questions. Two security questions must be answered every time you log in on the apple website because you don't have 2 step verification enabled. Don't worry though: these questions are not triggered when you use the account in a scripted environment like Fledge.
 
-Warning: NEVER enable 2 step verification for this account. Once you turn it on, it cannot be turned off again.
+    Warning: NEVER enable 2 step verification for this account. Once you turn it on, it cannot be turned off again.
 
-The Apple ID's username and password are used by the build server secret variables `FASTLANE_USER` and `FASTLANE_PASSWORD`.
+    The Apple ID's username and password are used by the build server secret variables `FASTLANE_USER` and `FASTLANE_PASSWORD`.
+    
+1. Application specific password (not supported)  
+Using your default Apple ID, it is possible to generate an application specific password. To create the password go to https://appleid.apple.com/account/manage.
+Add the password to `FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD`  
+Note: at some point may switch to this method as it is more straightforward.
 
 ---
