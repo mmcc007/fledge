@@ -31,7 +31,7 @@ The metadata is found under 'android/fastlane/metadata' and 'ios/fastlane/metada
 For iOS, make the following changes to the Appfile in `ios/fastlane/Appfile:
 1. Update the `app_identifier`:
     ```
-    app_identifier("<eg, com.mycompany.todo>")
+    app_identifier("<eg, com.mycompany.myapp>")
     ```
 1. Update the `itc_team_id`:  
     ```
@@ -45,7 +45,7 @@ For iOS, make the following changes to the Appfile in `ios/fastlane/Appfile:
 For android, make the following changes to the Appfile in `android/fastlane/Appfile`:
 1. Update the `package_name`:
     ```
-    package_name("<eg, com.mycompany.todo>")
+    package_name("<eg, com.mycompany.myapp>")
     ```
 
 ## Apple Account config  

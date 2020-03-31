@@ -26,9 +26,19 @@ Separate identifiers can be used in each store. However, to make things simple, 
 These identifiers will be used in several places to configure the app for release.
  
 1. Pick an App ID  
-Decide on an Application ID for your app that is unique in both stores. For example, `com.mycompany.todo`.
+Decide on an Application ID for your app that is unique in both stores. For example, `com.mycompany.myapp`.
 1. Pick an App Name  
 The app name, which is what the user sees, should be unique in both stores. Let's say your app name is `MyUniqueAppName`.
+1. Update Fastlane config with the Application ID
+
+   - `ios/fastlane/Appfile`: 
+       ```
+       app_identifier("com.mycompany.myapp")
+       ```  
+   -  `android/fastlane/Appfile`:
+       ```
+       package_name("com.mycompany.myapp")
+       ```  
 
 ## Version tracking  
 The build number and release tag change with each build and release of the app. It is useful to be able to embed these values in the build artifact. This allows tracing-back from any version of the app, running on any device, to the build and source code.  
