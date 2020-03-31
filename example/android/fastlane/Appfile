@@ -1,1 +1,1 @@
-package_name("com.orbsoft.todo") # e.g. com.krausefx.app
+package_name("com.orbsoft.fledge_demo_app") # e.g. com.krausefx.app

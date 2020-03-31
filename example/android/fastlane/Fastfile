@@ -22,7 +22,8 @@ platform :android do
       track: options[:track],
       apk: '../build/app/outputs/apk/release/app-release.apk',
       json_key_data: ENV['GOOGLE_DEVELOPER_SERVICE_ACCOUNT_ACTOR_FASTLANE'],
-      #skip_upload_screenshots: false,
+      skip_upload_screenshots: true,
+      release_status: 'draft',
       #skip_upload_images: false
     )
   end
