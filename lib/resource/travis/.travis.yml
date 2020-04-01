@@ -32,8 +32,8 @@ jobs:
         - sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
         # install version of fastlane from Gemfile.lock
-        - gem install bundler:2.0.1
-        - (cd example; bundle install)
+        - gem install bundler:2.0.2
+        - bundle install > /dev/null
 
         # install flutter
         - wget --quiet --output-document=flutter.zip https://storage.googleapis.com/flutter_infra/releases/${FLUTTER_CHANNEL}/macos/flutter_macos_v${FLUTTER_VERSION}.zip && unzip -qq flutter.zip > /dev/null && rm flutter.zip
@@ -89,7 +89,7 @@ jobs:
         - java -version
 
         # Accept licenses before installing components
-        - yes | sdkmanager --licenses
+        - yes | sdkmanager --licenses > /dev/null
         # Platform tools
         - yes | sdkmanager "platform-tools" "platforms;android-${ANDROID_COMPILE_SDK}" "build-tools;${ANDROID_BUILD_TOOLS}" > /dev/null
         - sdkmanager --list | head -15
@@ -98,7 +98,7 @@ jobs:
 #        - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
 
         # install version of fastlane described in Gemfile.lock
-        - gem install bundler:2.0.1
+        - gem install bundler:2.0.2
         - bundle install > /dev/null
 
         # install flutter
@@ -126,7 +126,7 @@ jobs:
         - sudo ln -sf /usr/share/zoneinfo/US/Pacific /etc/localtime
 
         # install version of fastlane from Gemfile.lock
-        - gem install bundler:2.0.1
+        - gem install bundler:2.0.2
         - bundle install > /dev/null
       script:
         # fail on error
