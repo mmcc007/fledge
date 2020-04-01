@@ -24,7 +24,7 @@ open ios/Runner.xcworkspace
 ```
 
 ### App ID
-Update the `Bundle Identifier` to the same as the application id used on android, eg, `com.mycompany.todo`.
+Update the `Bundle Identifier` to the same as the application id used on android, eg, `com.mycompany.myapp`.
 
 Note: `Version` and `Build` can be ignored. These are updated automatically by the Fledge.
 
@@ -71,7 +71,7 @@ You will be asked for a unique name for the app for end users during this step. 
     recommended to use the same name in both stores. For example, `MyUniqueAppName`.
 
     ````
-    fastlane produce -u user@email.com -a com.mycompany.todo -q MyUniqueAppName
+    fastlane produce -u user@email.com -a com.mycompany.myapp -q MyUniqueAppName
     ````
     
     See [https://docs.fastlane.tools/actions/produce](https://docs.fastlane.tools/actions/produce) for details.
@@ -81,7 +81,7 @@ You will be asked for a unique name for the app for end users during this step. 
     fastlane match appstore
     ````
     
-   Among other things, this will create a provisioning profile that is used during app setup above. For example, `match AppStore com.mycompany.todo`.
+   Among other things, this will create a provisioning profile that is used during app setup above. For example, `match AppStore com.mycompany.myapp`.
 1. Delete the Matchfile (as it contains secure info)
 
 In Xcode:
@@ -89,7 +89,7 @@ In Xcode:
 Go to `Signing (Release)` and select the provisioning profile created during match setup.
 For example, use the following provisioning profile:        
 ```
-match AppStore com.mycompany.todo
+match AppStore com.mycompany.myapp
 ```    
 
 ---

@@ -21,7 +21,7 @@ The App ID, App Name, icons and signing should be set in the android config file
 ### App ID
 Update the application id in `android/app/build.gradle`:  
 ````
-applicationId "com.mycompany.todo"
+applicationId "com.mycompany.myapp"
 ````
     
 Note: `versionCode` and `versionName` can be ignored. These are updated automatically by Fledge.
@@ -134,8 +134,8 @@ Setting-up your app for android signing:
 
 1. Add the following to your `.gitignore`:
 
-        **/android/key.properties
-        **/android/key.jks
+       **/android/key.properties
+       **/android/key.jks
 
 1. Commit key.jks.enc and key.properties.enc and android/app/build.gradle.
 
