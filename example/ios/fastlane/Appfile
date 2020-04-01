@@ -1,4 +1,4 @@
-app_identifier("com.orbsoft.todo") # The bundle identifier of your app
+app_identifier("com.orbsoft.fledgeDemoApp") # The bundle identifier of your app
 #apple_id("mmccabe@orbsoft.com") # Your Apple email address
 
 itc_team_id("118607454") # App Store Connect Team ID

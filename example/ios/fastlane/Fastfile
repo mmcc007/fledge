@@ -70,8 +70,8 @@ platform :ios do
 
   desc "build release"
   private_lane :build_release do
-    pre_build_release
     enable_match_code_signing
+    pre_build_release
     #disable_automatic_code_signing
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     #enable_automatic_code_signing
